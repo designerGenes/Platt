@@ -8,20 +8,50 @@
 
 /* Begin PBXBuildFile section */
 		FE3E6878226E4C94008C8CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6877226E4C94008C8CE5 /* AppDelegate.swift */; };
-		FE3E687A226E4C94008C8CE5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6879226E4C94008C8CE5 /* ViewController.swift */; };
-		FE3E687D226E4C94008C8CE5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3E687B226E4C94008C8CE5 /* Main.storyboard */; };
+		FE3E687A226E4C94008C8CE5 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6879226E4C94008C8CE5 /* CalculatorViewController.swift */; };
 		FE3E687F226E4C99008C8CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE3E687E226E4C99008C8CE5 /* Assets.xcassets */; };
 		FE3E6882226E4C99008C8CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */; };
+		FE3E688C226E4D28008C8CE5 /* SpineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */; };
+		FE3E688E226E4D3C008C8CE5 /* SideCabinetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E688D226E4D3C008C8CE5 /* SideCabinetViewController.swift */; };
+		FE3E6894226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */; };
+		FE3E6896226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6895226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift */; };
+		FE3E6898226E4E8D008C8CE5 /* PlateSumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */; };
+		FE3E689A226E4ECB008C8CE5 /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6899226E4ECB008C8CE5 /* Plate.swift */; };
+		FE3E68A1226E4F23008C8CE5 /* UIView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E689C226E4F23008C8CE5 /* UIView+Convenience.swift */; };
+		FE3E68A2226E4F23008C8CE5 /* UIColor+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E689D226E4F23008C8CE5 /* UIColor+Design.swift */; };
+		FE3E68A3226E4F23008C8CE5 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E689E226E4F23008C8CE5 /* UIViewController+Convenience.swift */; };
+		FE3E68A4226E4F23008C8CE5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E689F226E4F23008C8CE5 /* Utils.swift */; };
+		FE3E68A5226E4F23008C8CE5 /* UIFont+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68A0226E4F23008C8CE5 /* UIFont+Design.swift */; };
+		FE3E68A7226E5267008C8CE5 /* CalculatorTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68A6226E5267008C8CE5 /* CalculatorTableDataSource.swift */; };
+		FE3E68A9226E53C2008C8CE5 /* CalculatorTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68A8226E53C2008C8CE5 /* CalculatorTableCell.swift */; };
+		FE3E68AB226E542A008C8CE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */; };
+		FE3E68AE226E5762008C8CE5 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AD226E5762008C8CE5 /* PlateView.swift */; };
+		FE3E68B0226E6728008C8CE5 /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AF226E6728008C8CE5 /* OptionsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FE3E6874226E4C94008C8CE5 /* Platt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE3E6877226E4C94008C8CE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FE3E6879226E4C94008C8CE5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		FE3E687C226E4C94008C8CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FE3E6879226E4C94008C8CE5 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		FE3E687E226E4C99008C8CE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE3E6881226E4C99008C8CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE3E6883226E4C99008C8CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpineViewController.swift; sourceTree = "<group>"; };
+		FE3E688D226E4D3C008C8CE5 /* SideCabinetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCabinetViewController.swift; sourceTree = "<group>"; };
+		FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		FE3E6895226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateAdditionSequenceTableViewCell.swift; sourceTree = "<group>"; };
+		FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateSumTableViewCell.swift; sourceTree = "<group>"; };
+		FE3E6899226E4ECB008C8CE5 /* Plate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
+		FE3E689C226E4F23008C8CE5 /* UIView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Convenience.swift"; sourceTree = "<group>"; };
+		FE3E689D226E4F23008C8CE5 /* UIColor+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Design.swift"; sourceTree = "<group>"; };
+		FE3E689E226E4F23008C8CE5 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
+		FE3E689F226E4F23008C8CE5 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		FE3E68A0226E4F23008C8CE5 /* UIFont+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Design.swift"; sourceTree = "<group>"; };
+		FE3E68A6226E5267008C8CE5 /* CalculatorTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTableDataSource.swift; sourceTree = "<group>"; };
+		FE3E68A8226E53C2008C8CE5 /* CalculatorTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTableCell.swift; sourceTree = "<group>"; };
+		FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		FE3E68AD226E5762008C8CE5 /* PlateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
+		FE3E68AF226E6728008C8CE5 /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +84,93 @@
 		FE3E6876226E4C94008C8CE5 /* Platt */ = {
 			isa = PBXGroup;
 			children = (
+				FE3E689B226E4EEC008C8CE5 /* Extensions */,
+				FE3E6890226E4D4F008C8CE5 /* Views */,
+				FE3E688F226E4D46008C8CE5 /* Models */,
 				FE3E6877226E4C94008C8CE5 /* AppDelegate.swift */,
-				FE3E6879226E4C94008C8CE5 /* ViewController.swift */,
-				FE3E687B226E4C94008C8CE5 /* Main.storyboard */,
-				FE3E687E226E4C99008C8CE5 /* Assets.xcassets */,
-				FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */,
+				FE3E688A226E4CB1008C8CE5 /* Controllers */,
+				FE3E6889226E4CA9008C8CE5 /* Supporting Files */,
 				FE3E6883226E4C99008C8CE5 /* Info.plist */,
 			);
 			path = Platt;
+			sourceTree = "<group>";
+		};
+		FE3E6889226E4CA9008C8CE5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */,
+				FE3E687E226E4C99008C8CE5 /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FE3E688A226E4CB1008C8CE5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6892226E4D80008C8CE5 /* CalculatorViewController */,
+				FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */,
+				FE3E688D226E4D3C008C8CE5 /* SideCabinetViewController.swift */,
+				FE3E68AC226E5431008C8CE5 /* BaseViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FE3E688F226E4D46008C8CE5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6899226E4ECB008C8CE5 /* Plate.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FE3E6890226E4D4F008C8CE5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6891226E4D69008C8CE5 /* Cells */,
+				FE3E68AD226E5762008C8CE5 /* PlateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FE3E6891226E4D69008C8CE5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */,
+				FE3E6895226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift */,
+				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
+				FE3E68AF226E6728008C8CE5 /* OptionsTableViewCell.swift */,
+				FE3E68A8226E53C2008C8CE5 /* CalculatorTableCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		FE3E6892226E4D80008C8CE5 /* CalculatorViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6879226E4C94008C8CE5 /* CalculatorViewController.swift */,
+				FE3E68A6226E5267008C8CE5 /* CalculatorTableDataSource.swift */,
+			);
+			path = CalculatorViewController;
+			sourceTree = "<group>";
+		};
+		FE3E689B226E4EEC008C8CE5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E689D226E4F23008C8CE5 /* UIColor+Design.swift */,
+				FE3E68A0226E4F23008C8CE5 /* UIFont+Design.swift */,
+				FE3E689C226E4F23008C8CE5 /* UIView+Convenience.swift */,
+				FE3E689E226E4F23008C8CE5 /* UIViewController+Convenience.swift */,
+				FE3E689F226E4F23008C8CE5 /* Utils.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FE3E68AC226E5431008C8CE5 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */,
+			);
+			path = BaseViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +233,6 @@
 			files = (
 				FE3E6882226E4C99008C8CE5 /* LaunchScreen.storyboard in Resources */,
 				FE3E687F226E4C99008C8CE5 /* Assets.xcassets in Resources */,
-				FE3E687D226E4C94008C8CE5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,22 +243,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE3E687A226E4C94008C8CE5 /* ViewController.swift in Sources */,
+				FE3E68A9226E53C2008C8CE5 /* CalculatorTableCell.swift in Sources */,
+				FE3E68AE226E5762008C8CE5 /* PlateView.swift in Sources */,
+				FE3E688E226E4D3C008C8CE5 /* SideCabinetViewController.swift in Sources */,
+				FE3E6898226E4E8D008C8CE5 /* PlateSumTableViewCell.swift in Sources */,
+				FE3E6894226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift in Sources */,
+				FE3E68A2226E4F23008C8CE5 /* UIColor+Design.swift in Sources */,
+				FE3E687A226E4C94008C8CE5 /* CalculatorViewController.swift in Sources */,
+				FE3E68A5226E4F23008C8CE5 /* UIFont+Design.swift in Sources */,
+				FE3E689A226E4ECB008C8CE5 /* Plate.swift in Sources */,
+				FE3E68A1226E4F23008C8CE5 /* UIView+Convenience.swift in Sources */,
 				FE3E6878226E4C94008C8CE5 /* AppDelegate.swift in Sources */,
+				FE3E6896226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift in Sources */,
+				FE3E68A3226E4F23008C8CE5 /* UIViewController+Convenience.swift in Sources */,
+				FE3E68A7226E5267008C8CE5 /* CalculatorTableDataSource.swift in Sources */,
+				FE3E68B0226E6728008C8CE5 /* OptionsTableViewCell.swift in Sources */,
+				FE3E68AB226E542A008C8CE5 /* BaseViewController.swift in Sources */,
+				FE3E688C226E4D28008C8CE5 /* SpineViewController.swift in Sources */,
+				FE3E68A4226E4F23008C8CE5 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		FE3E687B226E4C94008C8CE5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FE3E687C226E4C94008C8CE5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
