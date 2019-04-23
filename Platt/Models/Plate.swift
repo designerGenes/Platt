@@ -20,9 +20,11 @@ class Plate: NSObject {
     
     var color: UIColor = UIColor.lightGray
     var unitWeight: Double = 0
+    var measurementSystem = SessionConfig.defaultConfig.configOptions[ConfigOption.measurementSystem] as! MeasurementSystem
     convenience init(color: UIColor, unitWeight: Double) {
         self.init()
         self.color = color
         self.unitWeight = unitWeight
+        self.measurementSystem = measurementSystem
     }
 }

@@ -8,59 +8,35 @@
 
 import UIKit
 
-class PlateCollectionViewCell: UICollectionViewCell {
-    private var plateView = PlateView()
-    private var plateWidthConstraint: NSLayoutConstraint?
-    
-    func loadPlate(plate: Plate, position: Int) {
-        plateView.plate = plate
-        let percentSize = min(1, Double(position) / Double(Plate.defaultPlates.count))
-        let inset = ((40 * CGFloat(1 - percentSize)) / 2)
-        contentView.layoutMargins = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-    }
-
-    
-    func setup() {
-        contentView.addSubview(plateView)
-//        contentView.backgroundColor = .white
-        plateView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addConstraints([
-            plateView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            plateView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
-            plateView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            plateView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
-            plateView.heightAnchor.constraint(equalTo: plateView.widthAnchor),
-            ])
-        
-        plateWidthConstraint = contentView.widthAnchor.constraint(equalToConstant: 100)
-        plateWidthConstraint?.isActive = true
-        
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
+protocol PlateCollectionCellDelegate: class {
+    func didUpdatePlateList(plates: [Plate], in cell: PlateCollectionTableViewCell)
+    func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell)
 }
 
+// contains lateral collection of Plate cells
 class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var data = [Plate]()
     var collectionView: UICollectionView!
+    weak var delegate: PlateCollectionCellDelegate?
     
     // MARK: - lifecycle methods
+    func loadPlates(plates: [Plate], clearBeforeAdding: Bool = true) {
+        if clearBeforeAdding {
+            data = plates
+        } else {
+            data.append(contentsOf: plates)
+        }
+        collectionView.reloadData()
+        delegate?.didUpdatePlateList(plates: plates, in: self)
+    }
+    
     override func setup() {
         super.setup()
-        
-        data = Plate.defaultPlates // TMP!
+        contentView.backgroundColor = .spotifyGray()
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.estimatedItemSize = CGSize(width: 2, height: 2)
-        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
+        flowLayout.estimatedItemSize = CGSize(width: 13, height: 13)
+//        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         coverSelfEntirely(with: collectionView, obeyMargins: false)
@@ -82,15 +58,15 @@ class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: 24, height: 10)
+        return CGSize(width: 8, height: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 24, height: 10)
+        return CGSize(width: 8, height: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
+        delegate?.didSelectPlate(plate: data[indexPath.section], in: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
