@@ -55,6 +55,15 @@ class PlateCalculator: NSObject {
         delegate?.didUpdateSum(sum: sum(), in: self)
     }
     
+    func remove(plate: Plate) {
+        let plateCount = plates.count
+        plates = plates.filter({$0 != plate})
+        if plates.count != plateCount {
+            delegate?.didUpdateSum(sum: sum(), in: self)
+        }
+        
+    }
+    
     func sum() -> Double {
         return plates.map({ MeasurementSystem.convert(val: $0.unitWeight, to: measurementSystem)}).reduce(0, +)
     }

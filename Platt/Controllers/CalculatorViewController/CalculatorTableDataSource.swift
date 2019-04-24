@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculatorDelegate, ButtonDrawerDelegate  {
+class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculatorDelegate, ButtonDrawerDelegate, PlateCollectionTableViewCellDelegate  {
     var cellRefs = [CalculatorTableCellId: CalculatorTableCell]()
     var plateCalculator = PlateCalculator()
     weak var tableView: UITableView?
@@ -22,10 +22,23 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
         plateCalculator.delegate = self
     }
     
+    // MARK: - PlateCollectionCellDelegate methods
+    func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell) {
+        switch cell {
+        case cellRefs[.PlateCollectionTableViewCell]:
+            plateCalculator.add(plate: plate)
+        case cellRefs[.PlateAdditionSequenceTableViewCell]:
+            plateCalculator.remove(plate: plate)
+        default: break
+        }
+    }
+    
+    
     // MARK: - ButtonDrawerDelegate methods
     func didTapDrawerButton(buttonType: DrawerButtonType) {
         switch buttonType {
-        case .clear: plateCalculator.clear()
+        case .clear:
+            plateCalculator.clear()
         case .toggleMultiplier:
             let toggledM = [1, 2].filter({$0 != plateCalculator.multiplier}).first!
             plateCalculator.setConfigOption(option: .multiplier, val: toggledM)
@@ -71,9 +84,11 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
         switch indexPath.section {
         case 0:  // plate collection
             let plateCollectionCell = out as! PlateCollectionTableViewCell
+            plateCollectionCell.delegate = self
             plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates) // TMP!
         case 1:  // plate addition
             let plateAdditionCell = out as! PlateAdditionSequenceTableViewCell
+            plateAdditionCell.delegate = self
             plateAdditionCell.loadPlates(plates: plateCalculator.plates)
         case 2:  // plate sum
             (out as? PlateSumTableViewCell)?.reflectSum(in: plateCalculator)

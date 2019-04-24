@@ -8,9 +8,8 @@
 
 import UIKit
 
-protocol PlateCollectionCellDelegate: class {
-    func didSubmitNewPlateList(plates: [Plate])
-    func didSelectPlate(plate: Plate)
+protocol PlateCollectionTableViewCellDelegate: class {
+    func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell)
 }
 
 // contains lateral collection of Plate cells
@@ -18,7 +17,7 @@ class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSou
 
     var data = [Plate]()
     var collectionView: UICollectionView!
-    weak var delegate: PlateCollectionCellDelegate?
+    weak var delegate: PlateCollectionTableViewCellDelegate?
     
     // MARK: - lifecycle methods
     func loadPlates(plates: [Plate]) {
@@ -60,7 +59,7 @@ class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectPlate(plate: data[indexPath.section])
+        delegate?.didSelectPlate(plate: data[indexPath.section], in: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

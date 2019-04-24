@@ -9,10 +9,6 @@
 import UIKit
 
 class PlateAdditionSequenceTableViewCell: PlateCollectionTableViewCell {
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSubmitNewPlateList(plates: data.filter({$0 != data[indexPath.section]}))
-    }
 
     override func setup() {
         super.setup()
