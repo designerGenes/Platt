@@ -8,24 +8,17 @@
 
 import UIKit
 
-class PlateSumTableViewCell: CalculatorTableCell, PlateAdditionSequenceCellDelegate {
+class PlateSumTableViewCell: CalculatorTableCell {
     private var lblSum = InsetLabel(textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32))
-    
-    // MARK: - PlateAdditionSequenceCellDelegate methods
-    func didChangeSum(sum: Double, in cell: PlateAdditionSequenceTableViewCell) {
-        SessionConfig.activeConfig().sum = sum
-        reflectSum()
-    }
-    
-    func reflectSum() {
-        let sum = SessionConfig.activeConfig().sum
+        
+    func reflectSum(in calculator: PlateCalculator) {
+        let sum = calculator.sum()
         var sumStr = String(sum)
         if Double(Int(sum)) == sum {
-            // !has remainder
             sumStr = String(Int(sum))
         }
-        let measSystem = SessionConfig.activeConfig().configOptions[.measurementSystem] as! MeasurementSystem
-        lblSum.text = "\(sumStr)\(measSystem.suffix().uppercased())\(sum > 1 ? "s" : "")"
+        let mSystemSuffix = "\(calculator.measurementSystem.suffix().uppercased())\(sum > 1 ? "s" : "")"
+        lblSum.text = "\(sumStr)\(mSystemSuffix)"
     }
     
     override func layoutSubviews() {
@@ -43,8 +36,6 @@ class PlateSumTableViewCell: CalculatorTableCell, PlateAdditionSequenceCellDeleg
         lblSum.textAlignment = .right
         lblSum.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         lblSum.layer.masksToBounds = true
-        
-        reflectSum()
         
     }
 

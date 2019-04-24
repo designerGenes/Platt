@@ -9,25 +9,21 @@
 import UIKit
 
 protocol PlateCollectionCellDelegate: class {
-    func didUpdatePlateList(plates: [Plate], in cell: PlateCollectionTableViewCell)
-    func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell)
+    func didSubmitNewPlateList(plates: [Plate])
+    func didSelectPlate(plate: Plate)
 }
 
 // contains lateral collection of Plate cells
 class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
     var data = [Plate]()
     var collectionView: UICollectionView!
     weak var delegate: PlateCollectionCellDelegate?
     
     // MARK: - lifecycle methods
-    func loadPlates(plates: [Plate], clearBeforeAdding: Bool = true) {
-        if clearBeforeAdding {
-            data = plates
-        } else {
-            data.append(contentsOf: plates)
-        }
+    func loadPlates(plates: [Plate]) {
+        data = plates
         collectionView.reloadData()
-        delegate?.didUpdatePlateList(plates: plates, in: self)
     }
     
     override func setup() {
@@ -36,11 +32,9 @@ class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSou
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
         flowLayout.estimatedItemSize = CGSize(width: 13, height: 13)
-//        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         coverSelfEntirely(with: collectionView, obeyMargins: false)
-        collectionView.showsHorizontalScrollIndicator = true
         collectionView.backgroundColor = .clear
         collectionView.register(PlateCollectionViewCell.self, forCellWithReuseIdentifier: "PlateCollectionViewCell")
         collectionView.delegate = self
@@ -66,7 +60,7 @@ class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.didSelectPlate(plate: data[indexPath.section], in: self)
+        delegate?.didSelectPlate(plate: data[indexPath.section])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

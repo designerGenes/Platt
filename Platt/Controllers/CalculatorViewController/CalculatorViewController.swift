@@ -8,21 +8,19 @@
 
 import UIKit
 
-class CalculatorViewController: BaseViewController, UITableViewDelegate, SessionConfigListener {
-    private let tableView = UITableView()
-    private let dataSource = CalculatorTableDataSource()
+class CalculatorViewController: BaseViewController, UITableViewDelegate {
     
-    // MARK: - SessionConfigListener methods
-    func didUpdateSessionConfig(updatedConfig: SessionConfig) {
-        tableView.reloadData()
-    }
+    private let tableView = UITableView()
+    private var dataSource: CalculatorTableDataSource!
+
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataSource = CalculatorTableDataSource(tableView: tableView)
         view.layoutMargins = UIEdgeInsets(top: 48, left: 0, bottom: 16, right: 0)
         view.coverSelfEntirely(with: tableView, obeyMargins: false)
-        SessionConfig.listeners.append(self)  // TMP!  needs removal on deinit
-        tableView.backgroundColor = .clear
+        
+        tableView.backgroundColor = .clear        
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -32,6 +30,8 @@ class CalculatorViewController: BaseViewController, UITableViewDelegate, Session
         tableView.register(PlateAdditionSequenceTableViewCell.self, forCellReuseIdentifier: "PlateAdditionSequenceTableViewCell")
         tableView.register(PlateSumTableViewCell.self, forCellReuseIdentifier: "PlateSumTableViewCell")
         tableView.register(ButtonDrawerTableViewCell.self, forCellReuseIdentifier: "ButtonDrawerTableViewCell")
+        
+        
     }
 
     

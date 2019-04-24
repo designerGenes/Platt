@@ -9,22 +9,20 @@
 import Foundation
 import UIKit
 
+enum PlateSize {
+    case large, medium, small, verySmall
+}
+
 class Plate: NSObject {
-    static let defaultPlates = [  // TMP!
-        Plate(color: .brightRed(), unitWeight: 2.5),
-        Plate(color: .limeGreen(), unitWeight: 5),
-        Plate(color: .fadedOrange(), unitWeight: 10),
-        Plate(color: .skyBlue(), unitWeight: 25),
-        Plate(color: .goldenYellow(), unitWeight: 45),
-    ]
-    
+    var size: PlateSize = .medium
     var color: UIColor = UIColor.lightGray
     var unitWeight: Double = 0
-    var measurementSystem = SessionConfig.defaultConfig.configOptions[ConfigOption.measurementSystem] as! MeasurementSystem
-    convenience init(color: UIColor, unitWeight: Double) {
-        self.init()
+    var measurementSystem: MeasurementSystem = .english
+    init(color: UIColor, size: PlateSize = .medium, measurementSystem: MeasurementSystem = .english, unitWeight: Double) {
+        super.init()
         self.color = color
         self.unitWeight = unitWeight
         self.measurementSystem = measurementSystem
+        self.size = size
     }
 }

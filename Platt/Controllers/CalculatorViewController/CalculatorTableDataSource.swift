@@ -9,36 +9,54 @@
 import Foundation
 import UIKit
 
-protocol CalculatorTableCellData: class {
-    
-}
 
-class CalculatorTableDataSource: NSObject, UITableViewDataSource, ButtonDrawerDelegate {
-    static var cellRefs = [String: CalculatorTableCell]()
+class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculatorDelegate, ButtonDrawerDelegate  {
+    var cellRefs = [CalculatorTableCellId: CalculatorTableCell]()
+    var plateCalculator = PlateCalculator()
+    weak var tableView: UITableView?
     
-    static let cellIds = [
-        "PlateCollectionTableViewCell",
-        "PlateAdditionSequenceTableViewCell",
-        "PlateSumTableViewCell",
-        "ButtonDrawerTableViewCell"
-    ]
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return CalculatorTableDataSource.cellIds.count
+    init(tableView: UITableView) {
+        super.init()
+        tableView.dataSource = self
+        self.tableView = tableView
+        plateCalculator.delegate = self
     }
-    
-    
     
     // MARK: - ButtonDrawerDelegate methods
     func didTapDrawerButton(buttonType: DrawerButtonType) {
-        let cfg = SessionConfig.activeConfig()
         switch buttonType {
-        case .clear: cfg.clear()
+        case .clear: plateCalculator.clear()
         case .toggleMultiplier:
-            let mult = cfg.configOptions[.multiplier] as! Int
-            cfg.configOptions[.multiplier] = [1, 2].filter({$0 != mult}).first!
-            SessionConfig.updateListeners()
+            let toggledM = [1, 2].filter({$0 != plateCalculator.multiplier}).first!
+            plateCalculator.setConfigOption(option: .multiplier, val: toggledM)
         }
+    }
+    
+    // MARK: - PlateCalculatorDelegate methods
+    func didUpdateSum(sum: Double, in calculator: PlateCalculator) {
+        tableView?.reloadData()
+    }
+    
+    func didUpdateConfigOption(option: CalculatorConfigOption, in calculator: PlateCalculator) {
+        switch option {
+        default: tableView?.reloadData()
+        }
+    }
+    
+    enum CalculatorTableCellId: String {
+        case PlateCollectionTableViewCell, PlateAdditionSequenceTableViewCell, PlateSumTableViewCell, ButtonDrawerTableViewCell
+        static func inOrder() -> [CalculatorTableCellId] {
+            return [
+                CalculatorTableCellId.PlateCollectionTableViewCell,
+                CalculatorTableCellId.PlateAdditionSequenceTableViewCell,
+                CalculatorTableCellId.PlateSumTableViewCell,
+                CalculatorTableCellId.ButtonDrawerTableViewCell
+                ]
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return CalculatorTableCellId.inOrder().count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,24 +64,22 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, ButtonDrawerDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let id = CalculatorTableDataSource.cellIds[indexPath.section]
-        let out = tableView.dequeueReusableCell(withIdentifier: id, for: indexPath) as! CalculatorTableCell
-        CalculatorTableDataSource.cellRefs[id] = out
+        let id = CalculatorTableCellId.inOrder()[indexPath.section]
+        let out = tableView.dequeueReusableCell(withIdentifier: id.rawValue, for: indexPath) as! CalculatorTableCell
+        cellRefs[id] = out
+        
         switch indexPath.section {
         case 0:  // plate collection
             let plateCollectionCell = out as! PlateCollectionTableViewCell
-            plateCollectionCell.loadPlates(plates: Plate.defaultPlates) // TMP!
+            plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates) // TMP!
         case 1:  // plate addition
             let plateAdditionCell = out as! PlateAdditionSequenceTableViewCell
-            let pCollectionCell = (CalculatorTableDataSource.cellRefs["PlateCollectionTableViewCell"] as? PlateCollectionTableViewCell)
-            pCollectionCell?.delegate = plateAdditionCell
-            plateAdditionCell.loadPlates(plates: SessionConfig.activeConfig().plates, clearBeforeAdding: true)
+            plateAdditionCell.loadPlates(plates: plateCalculator.plates)
         case 2:  // plate sum
-            let pAdditionCell = (CalculatorTableDataSource.cellRefs["PlateAdditionSequenceTableViewCell"] as? PlateAdditionSequenceTableViewCell)
-            pAdditionCell?.additionSequenceDelegate = out as! PlateSumTableViewCell
-            (out as? PlateSumTableViewCell)?.reflectSum()
+            (out as? PlateSumTableViewCell)?.reflectSum(in: plateCalculator)
         case 3:  // options
             let buttonDrawerCell = out as! ButtonDrawerTableViewCell
+            buttonDrawerCell.calculator = plateCalculator
             buttonDrawerCell.delegate = self
             buttonDrawerCell.collectionView.reloadData()
             

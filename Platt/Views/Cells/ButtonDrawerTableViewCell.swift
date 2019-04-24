@@ -10,45 +10,44 @@ import UIKit
 
 enum DrawerButtonType {
     case clear, toggleMultiplier
-    func getReflectingOption() -> ConfigOption? {
+    func getReflectingOption() -> CalculatorConfigOption? {
         switch self {
         case .toggleMultiplier: return .multiplier
         default: return nil
         }
     }
     
-    func getReflectingOptionVal() -> Any? {
+    func getReflectingVal(in calculator: PlateCalculator) -> Any? {
         if let reflectionName = getReflectingOption() {
-            return SessionConfig.activeConfig().configOptions[reflectionName]
+            return calculator.getConfigOption(option: reflectionName)
         }
         return nil
-    }
-    
-    func getImg() -> UIImage {
-        switch self {
-        case .clear: return UIImage.fromAsset(.letterC)
-        case .toggleMultiplier: return UIImage.fromAsset((self.getReflectingOptionVal() as! Int) < 2 ? NamedAsset.halfBar : .fullBar)
-        }
     }
 }
 
 class DrawerButtonView: RoundedCornersView {
     private let iconView = UIImageView()
     
-    func load(drawerButtonData: DrawerButtonType) {
+    func load(drawerButtonData: DrawerButtonType, calculator: PlateCalculator) {
         if !subviews.contains(iconView) {
             coverSelfEntirely(with: iconView)
             iconView.contentMode = .center
             backgroundColor = .lighterBgroundGray()
             cornerRadius = 6
         }
-        iconView.image = drawerButtonData.getImg()
+        
+        let assetName: NamedAsset
+        switch drawerButtonData {
+        case .clear: assetName = .letterC
+        case .toggleMultiplier:
+            assetName = (drawerButtonData.getReflectingVal(in: calculator) as! Int) < 2 ? .halfBar : .fullBar
+        }
+        iconView.image = UIImage.fromAsset(assetName)
     }
 }
 
 class ButtonDrawerCollectionViewCell: UICollectionViewCell {
     private let drawerButtonView = DrawerButtonView()
-//    private var optionButton: DrawerButtonView
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,8 +65,8 @@ class ButtonDrawerCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func load(drawerButtonData: DrawerButtonType) {
-        drawerButtonView.load(drawerButtonData: drawerButtonData)
+    func load(drawerButtonData: DrawerButtonType, calculator: PlateCalculator) {
+        drawerButtonView.load(drawerButtonData: drawerButtonData, calculator: calculator)
     }
 }
 
@@ -77,6 +76,7 @@ protocol ButtonDrawerDelegate: class {
 
 class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource, UICollectionViewDelegate {
     var collectionView: UICollectionView!
+    var calculator: PlateCalculator?
     weak var delegate: ButtonDrawerDelegate?
     private var data: [DrawerButtonType] = [
         .clear,
@@ -98,7 +98,7 @@ class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ButtonDrawerCollectionViewCell", for: indexPath) as! ButtonDrawerCollectionViewCell
-        cell.load(drawerButtonData: data[indexPath.section])
+        cell.load(drawerButtonData: data[indexPath.section], calculator: calculator!) // TMP!
         return cell
     }
     
@@ -112,7 +112,6 @@ class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         coverSelfEntirely(with: collectionView, obeyMargins: false)
-        collectionView.showsHorizontalScrollIndicator = true
         collectionView.backgroundColor = .clear
         collectionView.register(ButtonDrawerCollectionViewCell.self, forCellWithReuseIdentifier: "ButtonDrawerCollectionViewCell")
         collectionView.delegate = self

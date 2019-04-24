@@ -17,6 +17,13 @@ enum MeasurementSystem {
         }
     }
     
+    static func convert(plate: Plate, to system: MeasurementSystem) -> Double {
+        guard plate.measurementSystem != system else {
+            return plate.unitWeight
+        }
+        return convert(val: plate.unitWeight, to: system)
+    }
+    
     static func convert(val: Double, to system: MeasurementSystem) -> Double {
         switch system {
         case .english: return ((val * 2.2046) * 100).rounded() / 100

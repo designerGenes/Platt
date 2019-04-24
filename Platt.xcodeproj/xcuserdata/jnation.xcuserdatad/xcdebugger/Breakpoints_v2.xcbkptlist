@@ -10,77 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Platt/Views/Cells/PlateCollectionTableViewCell.swift"
-            timestampString = "577742656.218719"
+            timestampString = "577757493.035417"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Platt/Views/Cells/PlateSumTableViewCell.swift"
-            timestampString = "577742656.218787"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "didChangeSum(sum:in:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Platt/Controllers/CalculatorViewController/CalculatorViewController.swift"
-            timestampString = "577742656.2188441"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "didUpdateSessionConfig(updatedConfig:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Platt/Views/Cells/PlateSumTableViewCell.swift"
-            timestampString = "577742656.218894"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "reflectSum()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Platt/Controllers/CalculatorViewController/CalculatorTableDataSource.swift"
-            timestampString = "577742656.218942"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "PlateCollectionTableViewCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -90,12 +26,26 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Platt/Views/Cells/PlateAdditionSequenceTableViewCell.swift"
-            timestampString = "577742656.218998"
+            timestampString = "577757493.035489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "clear()"
+            startingLineNumber = "21"
+            endingLineNumber = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Platt/Views/Cells/ButtonDrawerTableViewCell.swift"
+            timestampString = "577757493.035542"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "load(drawerButtonData:calculator:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,29 +55,104 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Platt/Controllers/CalculatorViewController/CalculatorTableDataSource.swift"
-            timestampString = "577742656.219044"
+            filePath = "Platt/Models/Plate.swift"
+            timestampString = "577757493.035597"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "didTapDrawerButton(buttonType:)"
-            landmarkType = "7">
+            startingLineNumber = "20"
+            endingLineNumber = "20">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Platt.Plate.measurementSystem.getter : Platt.MeasurementSystem"
+                  moduleName = "Platt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jnation/repos/Platt/Platt/Models/Plate.swift"
+                  timestampString = "577746840.424659"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "100">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Platt.Plate.measurementSystem.setter : Platt.MeasurementSystem"
+                  moduleName = "Platt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jnation/repos/Platt/Platt/Models/Plate.swift"
+                  timestampString = "577746840.427195"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "121">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Platt.Plate.measurementSystem.modify : Platt.MeasurementSystem"
+                  moduleName = "Platt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jnation/repos/Platt/Platt/Models/Plate.swift"
+                  timestampString = "577746840.4296679"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Platt.Plate.measurementSystem.modify : Platt.MeasurementSystem with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Platt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jnation/repos/Platt/Platt/Models/Plate.swift"
+                  timestampString = "577746840.43256"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Platt.Plate.init() -&gt; Platt.Plate"
+                  moduleName = "Platt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/jnation/repos/Platt/Platt/Models/Plate.swift"
+                  timestampString = "577746840.438259"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "376">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Platt/Controllers/CalculatorViewController/CalculatorTableDataSource.swift"
-            timestampString = "577742656.2190911"
+            filePath = "Platt/Views/Cells/ButtonDrawerTableViewCell.swift"
+            timestampString = "577757493.035642"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "didTapDrawerButton(buttonType:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "getReflectingVal(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -138,12 +163,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Platt/Views/Cells/ButtonDrawerTableViewCell.swift"
-            timestampString = "577742656.219139"
+            timestampString = "577757493.035686"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "load(drawerButtonData:)"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "getReflectingVal(in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
