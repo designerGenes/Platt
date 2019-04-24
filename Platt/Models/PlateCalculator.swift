@@ -65,11 +65,11 @@ class PlateCalculator: NSObject {
     }
     
     func sum() -> Double {
-        return plates.map({ MeasurementSystem.convert(val: $0.unitWeight, to: measurementSystem)}).reduce(0, +)
+        return plates.map({ MeasurementSystem.convert(plate: $0, to: measurementSystem)}).reduce(0, +)
     }
     
     func add(plate: Plate) {
-        plates.append(plate)
+        plates.append(Plate(plate: plate))
     }
     
     func replacePlates(with plates: [Plate]) {

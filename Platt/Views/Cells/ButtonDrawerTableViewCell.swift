@@ -60,6 +60,7 @@ class ButtonDrawerCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
+        layoutMargins = UIEdgeInsets(top: layoutMargins.top, left: 24, bottom: layoutMargins.bottom, right: 24)
         coverSelfEntirely(with: drawerButtonView)
         backgroundColor = .clear
         
@@ -74,7 +75,7 @@ protocol ButtonDrawerDelegate: class {
     func didTapDrawerButton(buttonType: DrawerButtonType)
 }
 
-class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource, UICollectionViewDelegate {
+class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var collectionView: UICollectionView!
     var calculator: PlateCalculator?
     weak var delegate: ButtonDrawerDelegate?
@@ -83,7 +84,20 @@ class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource
         .toggleMultiplier
     ]
     
-    // MARK: - UICollectionViewDataSource, UICollectionViewDelegate methods
+    // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: 16, height: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 16
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.didTapDrawerButton(buttonType: data[indexPath.section])
     }
@@ -97,7 +111,8 @@ class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ButtonDrawerCollectionViewCell", for: indexPath) as! ButtonDrawerCollectionViewCell
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  CalculatorTableDataSource.CalculatorTableCellId.ButtonDrawerTableViewCell.rawValue, for: indexPath) as! ButtonDrawerCollectionViewCell
         cell.load(drawerButtonData: data[indexPath.section], calculator: calculator!) // TMP!
         return cell
     }
@@ -109,11 +124,12 @@ class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
         flowLayout.estimatedItemSize = CGSize(width: 56, height: 56)
+        flowLayout.itemSize = UICollectionViewFlowLayout.automaticSize
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         coverSelfEntirely(with: collectionView, obeyMargins: false)
         collectionView.backgroundColor = .clear
-        collectionView.register(ButtonDrawerCollectionViewCell.self, forCellWithReuseIdentifier: "ButtonDrawerCollectionViewCell")
+        collectionView.register(ButtonDrawerCollectionViewCell.self, forCellWithReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.ButtonDrawerTableViewCell.rawValue)
         collectionView.delegate = self
         collectionView.dataSource = self
     }

@@ -9,10 +9,8 @@
 import UIKit
 
 class CalculatorViewController: BaseViewController, UITableViewDelegate {
-    
     private let tableView = UITableView()
     private var dataSource: CalculatorTableDataSource!
-
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,15 +24,12 @@ class CalculatorViewController: BaseViewController, UITableViewDelegate {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         
-        tableView.register(PlateCollectionTableViewCell.self, forCellReuseIdentifier: "PlateCollectionTableViewCell")
-        tableView.register(PlateAdditionSequenceTableViewCell.self, forCellReuseIdentifier: "PlateAdditionSequenceTableViewCell")
-        tableView.register(PlateSumTableViewCell.self, forCellReuseIdentifier: "PlateSumTableViewCell")
-        tableView.register(ButtonDrawerTableViewCell.self, forCellReuseIdentifier: "ButtonDrawerTableViewCell")
-        
-        
+        tableView.register(PlateCollectionTableViewCell.self, forCellReuseIdentifier:  CalculatorTableDataSource.CalculatorTableCellId.PlateCollectionTableViewCell.rawValue)
+        tableView.register(PlateAdditionSequenceTableViewCell.self, forCellReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.PlateAdditionSequenceTableViewCell.rawValue)
+        tableView.register(PlateSumTableViewCell.self, forCellReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.PlateSumTableViewCell.rawValue)
+        tableView.register(ButtonDrawerTableViewCell.self, forCellReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.ButtonDrawerTableViewCell.rawValue)
     }
 
-    
     // MARK: - UITableViewDelegate methods
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140 //UITableView.automaticDimension

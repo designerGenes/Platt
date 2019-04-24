@@ -9,15 +9,35 @@
 import Foundation
 import UIKit
 
-enum PlateSize {
+enum PlateSize: String {
     case large, medium, small, verySmall
 }
 
 class Plate: NSObject {
+//    var id = UUID.init().uuidString
     var size: PlateSize = .medium
     var color: UIColor = UIColor.lightGray
     var unitWeight: Double = 0
     var measurementSystem: MeasurementSystem = .english
+    
+    init(plate: Plate) {
+        self.size = plate.size
+        self.color = plate.color
+        self.unitWeight = plate.unitWeight
+        self.measurementSystem = plate.measurementSystem
+    }
+    
+    override var description: String {
+        return "\(size.rawValue) Plate w/unit weight \(unitWeight)"
+    }
+    
+//    override func isEqual(_ object: Any?) -> Bool {
+//        guard let otherObj = object as? Plate else {
+//            return false
+//        }
+//        return otherObj.id == id
+//    }
+    
     init(color: UIColor, size: PlateSize = .medium, measurementSystem: MeasurementSystem = .english, unitWeight: Double) {
         super.init()
         self.color = color
