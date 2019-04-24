@@ -112,6 +112,7 @@
 		FE3E6889226E4CA9008C8CE5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FEC93272226FEEAB009BDD12 /* Fonts */,
 				FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */,
 				FE3E687E226E4C99008C8CE5 /* Assets.xcassets */,
 			);
@@ -192,6 +193,13 @@
 				FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		FEC93272226FEEAB009BDD12 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

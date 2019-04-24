@@ -42,12 +42,20 @@ class PlateCalculator: NSObject {
         }
     }
     
+    func toggleMeasurementSystem() {
+        setConfigOption(option: .measurementSystem, val: [MeasurementSystem.english, .metric].filter({$0 != measurementSystem}).first!)
+    }
+    
     var measurementSystem: MeasurementSystem {
         return configOptions[.measurementSystem] as? MeasurementSystem ?? .english
     }
     
     var multiplier: Int {
         return configOptions[.multiplier] as? Int ?? 1
+    }
+    
+    func toggleMultiplier() {
+        setConfigOption(option: .multiplier, val: [1, 2].filter({$0 != multiplier}).first!)
     }
     
     func clear() {
@@ -65,7 +73,9 @@ class PlateCalculator: NSObject {
     }
     
     func sum() -> Double {
-        return plates.map({ MeasurementSystem.convert(plate: $0, to: measurementSystem)}).reduce(0, +)
+        var out = plates.map({ MeasurementSystem.convert(plate: $0, to: measurementSystem)}).reduce(0, +) * Double(multiplier)
+        out = (out * 100).rounded() / 100
+        return out
     }
     
     func add(plate: Plate) {

@@ -18,7 +18,7 @@ class PlateSumTableViewCell: CalculatorTableCell {
             sumStr = String(Int(sum))
         }
         let mSystemSuffix = "\(calculator.measurementSystem.suffix().uppercased())\(sum > 1 ? "s" : "")"
-        lblSum.text = "\(sumStr)\(mSystemSuffix)"
+        lblSum.text = "\(sumStr)  \(mSystemSuffix)"
     }
     
     override func layoutSubviews() {

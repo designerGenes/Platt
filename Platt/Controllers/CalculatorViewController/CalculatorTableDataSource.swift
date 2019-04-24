@@ -40,8 +40,9 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
         case .clear:
             plateCalculator.clear()
         case .toggleMultiplier:
-            let toggledM = [1, 2].filter({$0 != plateCalculator.multiplier}).first!
-            plateCalculator.setConfigOption(option: .multiplier, val: toggledM)
+            plateCalculator.toggleMultiplier()
+        case .toggleMeasurementSystem:
+            plateCalculator.toggleMeasurementSystem()
         }
     }
     

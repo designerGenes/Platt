@@ -25,9 +25,12 @@ class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSou
         collectionView.reloadData()
     }
     
+    
     override func setup() {
         super.setup()
-        contentView.backgroundColor = .spotifyGray()
+        contentView.backgroundColor = .clear
+        
+
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
         flowLayout.estimatedItemSize = CGSize(width: 13, height: 13)
