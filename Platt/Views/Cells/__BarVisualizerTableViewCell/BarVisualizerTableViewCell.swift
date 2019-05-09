@@ -12,35 +12,70 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
     let scrollViewContainer = RoundedCornersView()
     let scrollView = UIScrollView()
     let barView = RoundedCornersView()
-    let exaggScrollBar = UIView()
-    var barWidthConstraint: NSLayoutConstraint?
+    let exaggScrollBar = RoundedCornersView()
+    private var plates = [(plateView: SkinnyPlateView, plate: Plate)]()
+    private var platesMap: [Plate: SkinnyPlateView] {
+        var out = [Plate: SkinnyPlateView]()
+        plates.forEach { (arg) in
+            out[arg.plate] = arg.plateView
+        }
+        return out
+    }
     
-    private var plates = [RoundedCornersView: CGFloat]()  // plate : xPos
     private let xSpacing: CGFloat = 20
+
+    @objc func clickedLoadedPlate(sender: UITapGestureRecognizer) {
+        let cellSuper = superview as! BarVisualizerTableViewCell
+        let senderPlateView = sender.view as! SkinnyPlateView
+        let senderPlate = plates.filter({$0.plateView == senderPlateView}).first!.plate
+        cellSuper.delegate?.didSelectPlate(plate: senderPlate, sender: cellSuper)
+        
+//        removePlates(plateViews: )
+    }
     
     private func slidePlate(plate: Plate, xPos: CGFloat) {
         
     }
     
-    func loadPlates(plates: [Plate]) {
-        for plate in plates {
-            let farthestX = self.plates.values.sorted().last ?? scrollViewContainer.bounds.midX
-            let plateView = RoundedCornersView()
-            plateView.cornerRadius = 6
-            plateView.backgroundColor = plate.color
-            scrollView.layer.masksToBounds = false
-            scrollView.addSubview(plateView)
-            
-            plateView.frame.size = CGSize(width: 20, height: 40)
-            plateView.center = CGPoint(x: farthestX + xSpacing, y: scrollView.bounds.midY)
-            self.plates[plateView] = plateView.frame.origin.x
-            
-        }
+    func clearPlates() {
+        removePlates(plateViews: plates.map({$0.plateView}))
     }
     
-    func removePlates(plates: Plate...) {
-        
+    func removePlates(plateViews: [SkinnyPlateView]) {
+        plates.removeAll { (plateView, _) -> Bool in
+            plateViews.contains(plateView)
+        }
+        plateViews.forEach { (plateView) in
+            plateView.removeFromSuperview()
+        }
+        layoutSubviews()
     }
+    
+    func loadPlates(plates: [Plate]) {
+//        if plates.isEmpty {
+            clearPlates()
+//        }
+        for plate in plates { //plates.filter({!platesMap.keys.contains($0)}) {
+            
+            let plateView = SkinnyPlateView.facing(direction: .right, plate: plate, topInset: 0.3, bottomLoss: 0.3, usePercentages: true)
+            self.plates.append((plateView, plate))
+            scrollView.layer.masksToBounds = false
+            scrollView.addSubview(plateView)
+            plateView.frame.size = CGSize(width: 20, height: 40)
+            plateView.center = CGPoint(x: scrollViewContainer.bounds.midX, y: scrollView.bounds.midY)
+            
+            plateView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(clickedLoadedPlate(sender:))))
+        }
+        let doomedPlates = platesMap.keys.filter({!plates.contains($0)})
+        self.plates.removeAll { (_, plate) -> Bool in
+            // remove any not included in the new platesList
+            return doomedPlates.contains(plate)
+        }
+        
+        layoutSubviews()
+    }
+    
+    
     
     private func getContentWidth() -> CGFloat {
         return getBarWidth() + scrollViewContainer.layoutMargins.left + scrollViewContainer.layoutMargins.right
@@ -53,25 +88,29 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
     }
     
     private func getPlatesWidth() -> CGFloat {
-        return plates.keys.map({$0.frame.width + xSpacing}).reduce(0, +)
+        return plates.map({$0.plateView.frame.width + xSpacing}).reduce(0, +)
     }
     
     private func layoutPlates() {
         let minX = scrollViewContainer.bounds.inset(by: scrollViewContainer.layoutMargins).width / 2
-        for (k, plate) in plates.keys.enumerated() {
-            let computedX = minX + (CGFloat(k) * (20 + xSpacing))
-            plate.center = CGPoint(x: computedX, y: barView.frame.midY)
+        for (k, plateTuple) in plates.enumerated() {
+            let sizes = [PlateSize.verySmall: 0.5, .small: 0.7, .medium: 0.8, .large: 1]
+            let computedHeight = (scrollViewContainer.frame.height * 0.9) * CGFloat(sizes[plateTuple.plate.size]!)
+            plateTuple.plateView.frame.size = CGSize(width: 16, height: computedHeight)
+            layoutIfNeeded()
+            let computedX = minX + (CGFloat(k) * (plateTuple.plateView.frame.width + xSpacing))
+            plateTuple.plateView.center = CGPoint(x: computedX, y: scrollView.bounds.midY)
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        barView.layer.anchorPoint = CGPoint(x: 0, y: 0.5)
-        barView.frame.origin = CGPoint(x: scrollView.layoutMargins.left, y: scrollView.bounds.maxY)
+        barView.frame.origin = CGPoint(x: scrollView.layoutMargins.left, y: scrollView.bounds.minY)
         
         barView.frame.size = CGSize(width: getBarWidth(), height: 20)
         scrollView.contentSize = CGSize(width: getContentWidth(), height: barView.frame.height)
         layoutPlates()
+        scrollView.setContentOffset(CGPoint(x: scrollView.contentSize.width - scrollView.bounds.size.width, y: scrollView.contentOffset.y), animated: false)
     }
     
     override func setup() {
@@ -85,22 +124,8 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
         barView.cornerRadius = 4
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        
         scrollViewContainer.addSubview(scrollView)
         scrollView.addSubview(barView)
-        
-        
-        loadPlates(plates: [
-            Plate(color: .spotifyGreen(), unitWeight: 1),
-            Plate(color: .skyBlue(), unitWeight: 1),
-            Plate(color: .goldenYellow(), unitWeight: 1),
-            Plate(color: .skyBlue(), unitWeight: 1),
-            Plate(color: .brightRed(), unitWeight: 1),
-            Plate(color: .goldenYellow(), unitWeight: 1),
-            Plate(color: .goldenYellow(), unitWeight: 1),
-            Plate(color: .spotifyGreen(), unitWeight: 1),
-            Plate(color: .skyBlue(), unitWeight: 1),
-            ])
         
     }
     
@@ -115,8 +140,6 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
             scrollView.centerYAnchor.constraint(equalTo: scrollViewContainer.centerYAnchor),
             scrollView.widthAnchor.constraint(equalTo: scrollViewContainer.widthAnchor),
             scrollView.heightAnchor.constraint(equalTo: barView.heightAnchor),
-
-//
             ])
 //
 //        barWidthConstraint = barView.widthAnchor.constraint(equalToConstant: 50)
@@ -132,11 +155,17 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
 
 
 class BarVisualizerTableViewCell: CalculatorTableCell {
-    var barView = BarVisualizerView()
+    var barVisualizeView = BarVisualizerView()
+    weak var delegate: PlateCollectionDelegate?
+    
+    // MARK: - PlateCollectionTableViewCellDelegate methods
+    func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell) {
+        barVisualizeView.loadPlates(plates: [plate])
+    }
     
     override func setup() {
         super.setup()
-        coverSelfEntirely(with: barView)
+        coverSelfEntirely(with: barVisualizeView)
     }
     
     

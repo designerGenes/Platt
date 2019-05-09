@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculatorDelegate, ButtonDrawerDelegate, PlateCollectionTableViewCellDelegate  {
+class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculatorDelegate, ButtonDrawerDelegate, PlateCollectionDelegate  {
     var cellRefs = [CalculatorTableCellId: CalculatorTableCell]()
     var plateCalculator = PlateCalculator()
     weak var tableView: UITableView?
@@ -23,8 +23,8 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
     }
     
     // MARK: - PlateCollectionCellDelegate methods
-    func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell) {
-        switch cell {
+    func didSelectPlate(plate: Plate, sender: UIView) {
+        switch sender {
         case cellRefs[.PlateCollectionTableViewCell]:
             plateCalculator.add(plate: plate)
         case cellRefs[.BarVisualizerTableViewCell]:
@@ -89,7 +89,10 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
             plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates) // TMP!
         case 1:  // plate addition
             let barVisualizerCell = out as! BarVisualizerTableViewCell
-            barVisualizerCell.barView.loadPlates(plates: plateCalculator.plates)
+            let barVView = barVisualizerCell.barVisualizeView
+            barVisualizerCell.delegate = self
+            barVView.loadPlates(plates: plateCalculator.plates)
+            
         case 2:  // plate sum
             (out as? PlateSumTableViewCell)?.reflectSum(in: plateCalculator)
         case 3:  // options
