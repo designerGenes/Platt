@@ -9,18 +9,68 @@
 import Foundation
 import UIKit
 
-protocol CalculatorTableCellData: class {
-    
-}
 
-class CalculatorTableDataSource: NSObject, UITableViewDataSource {
-    static var cellIds = ["PlateCollectionTableViewCell"] //,
-//                "PlateAdditionSequenceTableViewCell",
-//                "PlateSumTableViewCell",
-//                "OptionsTableViewCell"]
+class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculatorDelegate, ButtonDrawerDelegate, PlateCollectionTableViewCellDelegate  {
+    var cellRefs = [CalculatorTableCellId: CalculatorTableCell]()
+    var plateCalculator = PlateCalculator()
+    weak var tableView: UITableView?
+    
+    init(tableView: UITableView) {
+        super.init()
+        tableView.dataSource = self
+        self.tableView = tableView
+        plateCalculator.delegate = self
+    }
+    
+    // MARK: - PlateCollectionCellDelegate methods
+    func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell) {
+        switch cell {
+        case cellRefs[.PlateCollectionTableViewCell]:
+            plateCalculator.add(plate: plate)
+        case cellRefs[.BarVisualizerTableViewCell]:
+            plateCalculator.remove(plate: plate)
+        default: break
+        }
+    }
+    
+    
+    // MARK: - ButtonDrawerDelegate methods
+    func didTapDrawerButton(buttonType: DrawerButtonType) {
+        switch buttonType {
+        case .clear:
+            plateCalculator.clear()
+        case .toggleMultiplier:
+            plateCalculator.toggleMultiplier()
+        case .toggleMeasurementSystem:
+            plateCalculator.toggleMeasurementSystem()
+        }
+    }
+    
+    // MARK: - PlateCalculatorDelegate methods
+    func didUpdateSum(sum: Double, in calculator: PlateCalculator) {
+        tableView?.reloadData()
+    }
+    
+    func didUpdateConfigOption(option: CalculatorConfigOption, in calculator: PlateCalculator) {
+        switch option {
+        default: tableView?.reloadData()
+        }
+    }
+    
+    enum CalculatorTableCellId: String {
+        case PlateCollectionTableViewCell, BarVisualizerTableViewCell, PlateSumTableViewCell, ButtonDrawerTableViewCell
+        static func inOrder() -> [CalculatorTableCellId] {
+            return [
+                CalculatorTableCellId.PlateCollectionTableViewCell,
+                CalculatorTableCellId.BarVisualizerTableViewCell,
+                CalculatorTableCellId.PlateSumTableViewCell,
+                CalculatorTableCellId.ButtonDrawerTableViewCell
+                ]
+        }
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return CalculatorTableDataSource.cellIds.count
+        return CalculatorTableCellId.inOrder().count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,18 +78,26 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let out = tableView.dequeueReusableCell(withIdentifier: CalculatorTableDataSource.cellIds[indexPath.section], for: indexPath)
+        let id = CalculatorTableCellId.inOrder()[indexPath.section]
+        let out = tableView.dequeueReusableCell(withIdentifier: id.rawValue, for: indexPath) as! CalculatorTableCell
+        cellRefs[id] = out
         
         switch indexPath.section {
         case 0:  // plate collection
             let plateCollectionCell = out as! PlateCollectionTableViewCell
-            
+            plateCollectionCell.delegate = self
+            plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates) // TMP!
         case 1:  // plate addition
-            break
+            let barVisualizerCell = out as! BarVisualizerTableViewCell
+            barVisualizerCell.barView.loadPlates(plates: plateCalculator.plates)
         case 2:  // plate sum
-            break
+            (out as? PlateSumTableViewCell)?.reflectSum(in: plateCalculator)
         case 3:  // options
-            break
+            let buttonDrawerCell = out as! ButtonDrawerTableViewCell
+            buttonDrawerCell.calculator = plateCalculator
+            buttonDrawerCell.delegate = self
+            buttonDrawerCell.collectionView.reloadData()
+            
         default: break
         }
         

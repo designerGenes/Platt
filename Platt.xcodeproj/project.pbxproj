@@ -26,8 +26,29 @@
 		FE3E68A9226E53C2008C8CE5 /* CalculatorTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68A8226E53C2008C8CE5 /* CalculatorTableCell.swift */; };
 		FE3E68AB226E542A008C8CE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */; };
 		FE3E68AE226E5762008C8CE5 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AD226E5762008C8CE5 /* PlateView.swift */; };
-		FE3E68B0226E6728008C8CE5 /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AF226E6728008C8CE5 /* OptionsTableViewCell.swift */; };
+		FE3E68B0226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AF226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift */; };
+		FE3E68B2226F7560008C8CE5 /* PlateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */; };
+		FE3E68B4226F7C61008C8CE5 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68B3226F7C61008C8CE5 /* Enums.swift */; };
+		FE3E68B6226F7E7A008C8CE5 /* PlateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68B5226F7E7A008C8CE5 /* PlateCalculator.swift */; };
+		FE49F7A3228353920007D7A8 /* BarVisualizerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49F7A2228353920007D7A8 /* BarVisualizerTableViewCell.swift */; };
+		FE49F7C722838E030007D7A8 /* SkinnyPlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49F7C622838E030007D7A8 /* SkinnyPlateView.swift */; };
+		FE49F7D122848D370007D7A8 /* PlattTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49F7D022848D370007D7A8 /* PlattTests.swift */; };
+		FE49F7D922848E4A0007D7A8 /* DJView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE49F7D822848E4A0007D7A8 /* DJView.swift */; };
+		FEC3A057226F8D7600111B59 /* UIImage+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */; };
+		FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A058226F8E3A00111B59 /* InsetLabel.swift */; };
+		FEC3A05B226F937000111B59 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A05A226F937000111B59 /* RoundedCornersView.swift */; };
+		FEC93271226FD4D7009BDD12 /* PlatesLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC93270226FD4D7009BDD12 /* PlatesLibrary.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FE49F7D322848D370007D7A8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FE3E686C226E4C94008C8CE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FE3E6873226E4C94008C8CE5;
+			remoteInfo = Platt;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		FE3E6874226E4C94008C8CE5 /* Platt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,11 +72,31 @@
 		FE3E68A8226E53C2008C8CE5 /* CalculatorTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTableCell.swift; sourceTree = "<group>"; };
 		FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		FE3E68AD226E5762008C8CE5 /* PlateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
-		FE3E68AF226E6728008C8CE5 /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsTableViewCell.swift; sourceTree = "<group>"; };
+		FE3E68AF226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDrawerTableViewCell.swift; sourceTree = "<group>"; };
+		FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE3E68B3226F7C61008C8CE5 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		FE3E68B5226F7E7A008C8CE5 /* PlateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateCalculator.swift; sourceTree = "<group>"; };
+		FE49F7A2228353920007D7A8 /* BarVisualizerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarVisualizerTableViewCell.swift; sourceTree = "<group>"; };
+		FE49F7C622838E030007D7A8 /* SkinnyPlateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinnyPlateView.swift; sourceTree = "<group>"; };
+		FE49F7CE22848D370007D7A8 /* PlattTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlattTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE49F7D022848D370007D7A8 /* PlattTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlattTests.swift; sourceTree = "<group>"; };
+		FE49F7D222848D370007D7A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE49F7D822848E4A0007D7A8 /* DJView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJView.swift; sourceTree = "<group>"; };
+		FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Asset.swift"; sourceTree = "<group>"; };
+		FEC3A058226F8E3A00111B59 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		FEC3A05A226F937000111B59 /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
+		FEC93270226FD4D7009BDD12 /* PlatesLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatesLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FE3E6871226E4C94008C8CE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE49F7CB22848D370007D7A8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -69,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				FE3E6876226E4C94008C8CE5 /* Platt */,
+				FE49F7CF22848D370007D7A8 /* PlattTests */,
 				FE3E6875226E4C94008C8CE5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				FE3E6874226E4C94008C8CE5 /* Platt.app */,
+				FE49F7CE22848D370007D7A8 /* PlattTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +141,7 @@
 		FE3E6889226E4CA9008C8CE5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FEC93272226FEEAB009BDD12 /* Fonts */,
 				FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */,
 				FE3E687E226E4C99008C8CE5 /* Assets.xcassets */,
 			);
@@ -119,6 +163,9 @@
 			isa = PBXGroup;
 			children = (
 				FE3E6899226E4ECB008C8CE5 /* Plate.swift */,
+				FE3E68B3226F7C61008C8CE5 /* Enums.swift */,
+				FE3E68B5226F7E7A008C8CE5 /* PlateCalculator.swift */,
+				FEC93270226FD4D7009BDD12 /* PlatesLibrary.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,6 +175,9 @@
 			children = (
 				FE3E6891226E4D69008C8CE5 /* Cells */,
 				FE3E68AD226E5762008C8CE5 /* PlateView.swift */,
+				FEC3A058226F8E3A00111B59 /* InsetLabel.swift */,
+				FEC3A05A226F937000111B59 /* RoundedCornersView.swift */,
+				FE49F7D822848E4A0007D7A8 /* DJView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -136,10 +186,12 @@
 			isa = PBXGroup;
 			children = (
 				FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */,
+				FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */,
 				FE3E6895226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift */,
 				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
-				FE3E68AF226E6728008C8CE5 /* OptionsTableViewCell.swift */,
+				FE3E68AF226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift */,
 				FE3E68A8226E53C2008C8CE5 /* CalculatorTableCell.swift */,
+				FE49F7A4228353B80007D7A8 /* __BarVisualizerTableViewCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -161,6 +213,7 @@
 				FE3E689C226E4F23008C8CE5 /* UIView+Convenience.swift */,
 				FE3E689E226E4F23008C8CE5 /* UIViewController+Convenience.swift */,
 				FE3E689F226E4F23008C8CE5 /* Utils.swift */,
+				FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -171,6 +224,31 @@
 				FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		FE49F7A4228353B80007D7A8 /* __BarVisualizerTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FE49F7A2228353920007D7A8 /* BarVisualizerTableViewCell.swift */,
+				FE49F7C622838E030007D7A8 /* SkinnyPlateView.swift */,
+			);
+			path = __BarVisualizerTableViewCell;
+			sourceTree = "<group>";
+		};
+		FE49F7CF22848D370007D7A8 /* PlattTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE49F7D022848D370007D7A8 /* PlattTests.swift */,
+				FE49F7D222848D370007D7A8 /* Info.plist */,
+			);
+			path = PlattTests;
+			sourceTree = "<group>";
+		};
+		FEC93272226FEEAB009BDD12 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,6 +271,24 @@
 			productReference = FE3E6874226E4C94008C8CE5 /* Platt.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FE49F7CD22848D370007D7A8 /* PlattTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE49F7D522848D370007D7A8 /* Build configuration list for PBXNativeTarget "PlattTests" */;
+			buildPhases = (
+				FE49F7CA22848D370007D7A8 /* Sources */,
+				FE49F7CB22848D370007D7A8 /* Frameworks */,
+				FE49F7CC22848D370007D7A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE49F7D422848D370007D7A8 /* PBXTargetDependency */,
+			);
+			name = PlattTests;
+			productName = PlattTests;
+			productReference = FE49F7CE22848D370007D7A8 /* PlattTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -205,6 +301,10 @@
 				TargetAttributes = {
 					FE3E6873226E4C94008C8CE5 = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					FE49F7CD22848D370007D7A8 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = FE3E6873226E4C94008C8CE5;
 					};
 				};
 			};
@@ -222,6 +322,7 @@
 			projectRoot = "";
 			targets = (
 				FE3E6873226E4C94008C8CE5 /* Platt */,
+				FE49F7CD22848D370007D7A8 /* PlattTests */,
 			);
 		};
 /* End PBXProject section */
@@ -236,6 +337,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE49F7CC22848D370007D7A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -245,26 +353,52 @@
 			files = (
 				FE3E68A9226E53C2008C8CE5 /* CalculatorTableCell.swift in Sources */,
 				FE3E68AE226E5762008C8CE5 /* PlateView.swift in Sources */,
+				FE3E68B4226F7C61008C8CE5 /* Enums.swift in Sources */,
 				FE3E688E226E4D3C008C8CE5 /* SideCabinetViewController.swift in Sources */,
+				FE49F7A3228353920007D7A8 /* BarVisualizerTableViewCell.swift in Sources */,
 				FE3E6898226E4E8D008C8CE5 /* PlateSumTableViewCell.swift in Sources */,
 				FE3E6894226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift in Sources */,
 				FE3E68A2226E4F23008C8CE5 /* UIColor+Design.swift in Sources */,
+				FE49F7C722838E030007D7A8 /* SkinnyPlateView.swift in Sources */,
 				FE3E687A226E4C94008C8CE5 /* CalculatorViewController.swift in Sources */,
+				FE3E68B6226F7E7A008C8CE5 /* PlateCalculator.swift in Sources */,
 				FE3E68A5226E4F23008C8CE5 /* UIFont+Design.swift in Sources */,
 				FE3E689A226E4ECB008C8CE5 /* Plate.swift in Sources */,
+				FEC3A05B226F937000111B59 /* RoundedCornersView.swift in Sources */,
 				FE3E68A1226E4F23008C8CE5 /* UIView+Convenience.swift in Sources */,
+				FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */,
+				FE49F7D922848E4A0007D7A8 /* DJView.swift in Sources */,
+				FEC3A057226F8D7600111B59 /* UIImage+Asset.swift in Sources */,
 				FE3E6878226E4C94008C8CE5 /* AppDelegate.swift in Sources */,
 				FE3E6896226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift in Sources */,
 				FE3E68A3226E4F23008C8CE5 /* UIViewController+Convenience.swift in Sources */,
 				FE3E68A7226E5267008C8CE5 /* CalculatorTableDataSource.swift in Sources */,
-				FE3E68B0226E6728008C8CE5 /* OptionsTableViewCell.swift in Sources */,
+				FE3E68B2226F7560008C8CE5 /* PlateCollectionViewCell.swift in Sources */,
+				FEC93271226FD4D7009BDD12 /* PlatesLibrary.swift in Sources */,
+				FE3E68B0226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift in Sources */,
 				FE3E68AB226E542A008C8CE5 /* BaseViewController.swift in Sources */,
 				FE3E688C226E4D28008C8CE5 /* SpineViewController.swift in Sources */,
 				FE3E68A4226E4F23008C8CE5 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE49F7CA22848D370007D7A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE49F7D122848D370007D7A8 /* PlattTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE49F7D422848D370007D7A8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FE3E6873226E4C94008C8CE5 /* Platt */;
+			targetProxy = FE49F7D322848D370007D7A8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */ = {
@@ -430,6 +564,46 @@
 			};
 			name = Release;
 		};
+		FE49F7D622848D370007D7A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5DYJ7634L5;
+				INFOPLIST_FILE = PlattTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.designerjeans.PlattTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Platt.app/Platt";
+			};
+			name = Debug;
+		};
+		FE49F7D722848D370007D7A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5DYJ7634L5;
+				INFOPLIST_FILE = PlattTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.designerjeans.PlattTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Platt.app/Platt";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -447,6 +621,15 @@
 			buildConfigurations = (
 				FE3E6887226E4C99008C8CE5 /* Debug */,
 				FE3E6888226E4C99008C8CE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE49F7D522848D370007D7A8 /* Build configuration list for PBXNativeTarget "PlattTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE49F7D622848D370007D7A8 /* Debug */,
+				FE49F7D722848D370007D7A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

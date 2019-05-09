@@ -38,6 +38,8 @@ extension UIColor {
     
     class func spotifyGray() -> UIColor { return UIColor(hexString: "#1F2124") }
     class func spotifyDarkGray() -> UIColor { return UIColor(hexString: "#121212") }
+    class func lighterBgroundGray() -> UIColor { return UIColor(hexString: "#4B4F57") }
     class func spotifyGreen() -> UIColor { return UIColor(hexString: "#55B761") }
+    class func spotifyMud() -> UIColor { return UIColor(hexString: "#2F2F2F") }
    
 }
