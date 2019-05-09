@@ -25,7 +25,7 @@ class CalculatorViewController: BaseViewController, UITableViewDelegate {
         tableView.showsVerticalScrollIndicator = false
         
         tableView.register(PlateCollectionTableViewCell.self, forCellReuseIdentifier:  CalculatorTableDataSource.CalculatorTableCellId.PlateCollectionTableViewCell.rawValue)
-        tableView.register(PlateAdditionSequenceTableViewCell.self, forCellReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.PlateAdditionSequenceTableViewCell.rawValue)
+        tableView.register(BarVisualizerTableViewCell.self, forCellReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.BarVisualizerTableViewCell.rawValue)
         tableView.register(PlateSumTableViewCell.self, forCellReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.PlateSumTableViewCell.rawValue)
         tableView.register(ButtonDrawerTableViewCell.self, forCellReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.ButtonDrawerTableViewCell.rawValue)
     }

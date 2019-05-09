@@ -30,13 +30,7 @@ class Plate: NSObject {
     override var description: String {
         return "\(size.rawValue) Plate w/unit weight \(unitWeight)"
     }
-    
-//    override func isEqual(_ object: Any?) -> Bool {
-//        guard let otherObj = object as? Plate else {
-//            return false
-//        }
-//        return otherObj.id == id
-//    }
+
     
     init(color: UIColor, size: PlateSize = .medium, measurementSystem: MeasurementSystem = .english, unitWeight: Double) {
         super.init()

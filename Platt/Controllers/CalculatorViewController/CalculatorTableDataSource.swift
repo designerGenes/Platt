@@ -27,7 +27,7 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
         switch cell {
         case cellRefs[.PlateCollectionTableViewCell]:
             plateCalculator.add(plate: plate)
-        case cellRefs[.PlateAdditionSequenceTableViewCell]:
+        case cellRefs[.BarVisualizerTableViewCell]:
             plateCalculator.remove(plate: plate)
         default: break
         }
@@ -58,11 +58,11 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
     }
     
     enum CalculatorTableCellId: String {
-        case PlateCollectionTableViewCell, PlateAdditionSequenceTableViewCell, PlateSumTableViewCell, ButtonDrawerTableViewCell
+        case PlateCollectionTableViewCell, BarVisualizerTableViewCell, PlateSumTableViewCell, ButtonDrawerTableViewCell
         static func inOrder() -> [CalculatorTableCellId] {
             return [
                 CalculatorTableCellId.PlateCollectionTableViewCell,
-                CalculatorTableCellId.PlateAdditionSequenceTableViewCell,
+                CalculatorTableCellId.BarVisualizerTableViewCell,
                 CalculatorTableCellId.PlateSumTableViewCell,
                 CalculatorTableCellId.ButtonDrawerTableViewCell
                 ]
@@ -88,9 +88,8 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
             plateCollectionCell.delegate = self
             plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates) // TMP!
         case 1:  // plate addition
-            let plateAdditionCell = out as! PlateAdditionSequenceTableViewCell
-            plateAdditionCell.delegate = self
-            plateAdditionCell.loadPlates(plates: plateCalculator.plates)
+            let barVisualizerCell = out as! BarVisualizerTableViewCell
+            barVisualizerCell.barView.loadPlates(plates: plateCalculator.plates)
         case 2:  // plate sum
             (out as? PlateSumTableViewCell)?.reflectSum(in: plateCalculator)
         case 3:  // options
