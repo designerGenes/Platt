@@ -14,7 +14,6 @@
 		FE3E688C226E4D28008C8CE5 /* SpineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */; };
 		FE3E688E226E4D3C008C8CE5 /* SideCabinetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E688D226E4D3C008C8CE5 /* SideCabinetViewController.swift */; };
 		FE3E6894226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */; };
-		FE3E6896226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6895226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift */; };
 		FE3E6898226E4E8D008C8CE5 /* PlateSumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */; };
 		FE3E689A226E4ECB008C8CE5 /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6899226E4ECB008C8CE5 /* Plate.swift */; };
 		FE3E68A1226E4F23008C8CE5 /* UIView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E689C226E4F23008C8CE5 /* UIView+Convenience.swift */; };
@@ -60,7 +59,6 @@
 		FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpineViewController.swift; sourceTree = "<group>"; };
 		FE3E688D226E4D3C008C8CE5 /* SideCabinetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCabinetViewController.swift; sourceTree = "<group>"; };
 		FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateCollectionTableViewCell.swift; sourceTree = "<group>"; };
-		FE3E6895226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateAdditionSequenceTableViewCell.swift; sourceTree = "<group>"; };
 		FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateSumTableViewCell.swift; sourceTree = "<group>"; };
 		FE3E6899226E4ECB008C8CE5 /* Plate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
 		FE3E689C226E4F23008C8CE5 /* UIView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Convenience.swift"; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 			children = (
 				FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */,
 				FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */,
-				FE3E6895226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift */,
 				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
 				FE3E68AF226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift */,
 				FE3E68A8226E53C2008C8CE5 /* CalculatorTableCell.swift */,
@@ -370,7 +367,6 @@
 				FE49F7D922848E4A0007D7A8 /* DJView.swift in Sources */,
 				FEC3A057226F8D7600111B59 /* UIImage+Asset.swift in Sources */,
 				FE3E6878226E4C94008C8CE5 /* AppDelegate.swift in Sources */,
-				FE3E6896226E4E77008C8CE5 /* PlateAdditionSequenceTableViewCell.swift in Sources */,
 				FE3E68A3226E4F23008C8CE5 /* UIViewController+Convenience.swift in Sources */,
 				FE3E68A7226E5267008C8CE5 /* CalculatorTableDataSource.swift in Sources */,
 				FE3E68B2226F7560008C8CE5 /* PlateCollectionViewCell.swift in Sources */,

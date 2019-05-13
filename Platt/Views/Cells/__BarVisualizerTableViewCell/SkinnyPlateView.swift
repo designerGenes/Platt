@@ -8,18 +8,12 @@
 
 import UIKit
 
-import UIKit
-
 enum Direction: String {
     case left, right
 }
 
 enum Corner: String {
     case tl, tr, bl, br
-}
-
-func randomInt(high: Int, low: Int = 0) -> Int {
-    return low + Int(arc4random_uniform(UInt32(high - low)))
 }
 
 public struct OffsetRect {
@@ -59,7 +53,9 @@ class SkinnyPlateView: UIView {
         fillLayer?.cornerRadius = 5
     }
     
-    static func facing(direction: Direction, plate: Plate, topInset: CGFloat, bottomLoss: CGFloat, usePercentages: Bool) -> SkinnyPlateView {
+    static func facing(direction: Direction, plate: Plate, topInset: CGFloat = -1, bottomLoss: CGFloat = -1, usePercentages: Bool) -> SkinnyPlateView {
+        let topInset = topInset < 0 ? CGFloat(Double(randomInt(high: 40, low: 28)) / 100) : topInset
+        let bottomLoss = bottomLoss < 0 ? CGFloat(Double(randomInt(high: 40, low: 28)) / 100) : bottomLoss
         let tl = CGPoint(x: 0, y: direction == .left ? topInset : 0)
         let tr = CGPoint(x: 0, y: direction == .right ? topInset : 0)
         let bl = CGPoint(x: 0, y: direction == .left ? -bottomLoss : 0)

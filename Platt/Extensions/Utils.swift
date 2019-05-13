@@ -10,14 +10,13 @@ import Foundation
 import UIKit
 
 
-func randomInt(upperBound: Int, min: Int = 0) -> Int {
-    guard min < upperBound else {
-        return upperBound
-    }
-    let availableInts = Array(min..<upperBound)
-    return availableInts[Int(arc4random_uniform(UInt32(availableInts.count)))]
+func randomInt(high: Int, low: Int = 0) -> Int {
+    return low + Int(arc4random_uniform(UInt32(high - low)))
 }
 
+func randomPercent(low: Double = 0) -> Double {
+    return low + Double((randomInt(high: 101, low: 0)) - Int(low * 100)) / 100
+}
 
 func fisherYatesShuffle<T>(arr: inout [T]) {
     for w in (0..<arr.count).reversed() {

@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-enum PlateSize: String {
-    case large, medium, small, verySmall
+enum PlateSize: Int {
+    case verySmall, small, medium, large
 }
 
 class Plate: NSObject {
@@ -28,7 +28,7 @@ class Plate: NSObject {
     }
     
     override var description: String {
-        return "\(size.rawValue) Plate w/unit weight \(unitWeight)"
+        return "\(size) Plate w/unit weight \(unitWeight)"
     }
 
     
