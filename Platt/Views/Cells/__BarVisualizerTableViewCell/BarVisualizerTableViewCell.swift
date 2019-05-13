@@ -82,7 +82,7 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
     }
     
     private func getBarWidth() -> CGFloat {
-        let minimum = scrollViewContainer.bounds.inset(by: scrollViewContainer.layoutMargins).width
+        let minimum = scrollViewContainer.bounds.inset(by: scrollViewContainer.layoutMargins).width  - (scrollViewContainer.layoutMargins.right * 2)
         let computedWidth = (minimum / 2) + getPlatesWidth()
         return max(minimum, computedWidth)
     }
@@ -110,7 +110,8 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
         barView.frame.size = CGSize(width: getBarWidth(), height: 20)
         scrollView.contentSize = CGSize(width: getContentWidth(), height: barView.frame.height)
         layoutPlates()
-        scrollView.setContentOffset(CGPoint(x: scrollView.contentSize.width - scrollView.bounds.size.width, y: scrollView.contentOffset.y), animated: false)
+        let computedX = scrollView.contentSize.width - scrollView.bounds.size.width + (scrollViewContainer.layoutMargins.right * 2)
+        scrollView.setContentOffset(CGPoint(x: computedX, y: scrollView.contentOffset.y), animated: false)
     }
     
     override func setup() {

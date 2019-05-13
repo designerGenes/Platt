@@ -61,9 +61,9 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
         case PlateCollectionTableViewCell, BarVisualizerTableViewCell, PlateSumTableViewCell, ButtonDrawerTableViewCell
         static func inOrder() -> [CalculatorTableCellId] {
             return [
+                CalculatorTableCellId.PlateSumTableViewCell,
                 CalculatorTableCellId.PlateCollectionTableViewCell,
                 CalculatorTableCellId.BarVisualizerTableViewCell,
-                CalculatorTableCellId.PlateSumTableViewCell,
                 CalculatorTableCellId.ButtonDrawerTableViewCell
                 ]
         }
@@ -83,18 +83,17 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
         cellRefs[id] = out
         
         switch indexPath.section {
-        case 0:  // plate collection
+        case 0:  // plate sum
+            (out as? PlateSumTableViewCell)?.reflectSum(in: plateCalculator)
+        case 1:  // plate addition
             let plateCollectionCell = out as! PlateCollectionTableViewCell
             plateCollectionCell.delegate = self
             plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates) // TMP!
-        case 1:  // plate addition
+        case 2: // bar visualizer
             let barVisualizerCell = out as! BarVisualizerTableViewCell
             let barVView = barVisualizerCell.barVisualizeView
             barVisualizerCell.delegate = self
             barVView.loadPlates(plates: plateCalculator.plates)
-            
-        case 2:  // plate sum
-            (out as? PlateSumTableViewCell)?.reflectSum(in: plateCalculator)
         case 3:  // options
             let buttonDrawerCell = out as! ButtonDrawerTableViewCell
             buttonDrawerCell.calculator = plateCalculator
