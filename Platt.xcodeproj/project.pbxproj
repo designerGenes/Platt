@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE15AC992290E38B00559D1A /* SF-Pro-Text-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FE15AC982290E38B00559D1A /* SF-Pro-Text-Bold.ttf */; };
 		FE3E6878226E4C94008C8CE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6877226E4C94008C8CE5 /* AppDelegate.swift */; };
 		FE3E687A226E4C94008C8CE5 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6879226E4C94008C8CE5 /* CalculatorViewController.swift */; };
 		FE3E687F226E4C99008C8CE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE3E687E226E4C99008C8CE5 /* Assets.xcassets */; };
 		FE3E6882226E4C99008C8CE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */; };
 		FE3E688C226E4D28008C8CE5 /* SpineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */; };
-		FE3E688E226E4D3C008C8CE5 /* SideCabinetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E688D226E4D3C008C8CE5 /* SideCabinetViewController.swift */; };
+		FE3E688E226E4D3C008C8CE5 /* SideCabinetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E688D226E4D3C008C8CE5 /* SideCabinetController.swift */; };
 		FE3E6894226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */; };
 		FE3E6898226E4E8D008C8CE5 /* PlateSumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */; };
 		FE3E689A226E4ECB008C8CE5 /* Plate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E6899226E4ECB008C8CE5 /* Plate.swift */; };
@@ -37,6 +38,7 @@
 		FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A058226F8E3A00111B59 /* InsetLabel.swift */; };
 		FEC3A05B226F937000111B59 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A05A226F937000111B59 /* RoundedCornersView.swift */; };
 		FEC93271226FD4D7009BDD12 /* PlatesLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC93270226FD4D7009BDD12 /* PlatesLibrary.swift */; };
+		FEFBEE372289EE5300C38737 /* SideCabinetOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFBEE362289EE5300C38737 /* SideCabinetOptionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE15AC982290E38B00559D1A /* SF-Pro-Text-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Bold.ttf"; sourceTree = "<group>"; };
 		FE3E6874226E4C94008C8CE5 /* Platt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Platt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE3E6877226E4C94008C8CE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE3E6879226E4C94008C8CE5 /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
@@ -57,7 +60,7 @@
 		FE3E6881226E4C99008C8CE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE3E6883226E4C99008C8CE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpineViewController.swift; sourceTree = "<group>"; };
-		FE3E688D226E4D3C008C8CE5 /* SideCabinetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCabinetViewController.swift; sourceTree = "<group>"; };
+		FE3E688D226E4D3C008C8CE5 /* SideCabinetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCabinetController.swift; sourceTree = "<group>"; };
 		FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateSumTableViewCell.swift; sourceTree = "<group>"; };
 		FE3E6899226E4ECB008C8CE5 /* Plate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plate.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		FEC3A058226F8E3A00111B59 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		FEC3A05A226F937000111B59 /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
 		FEC93270226FD4D7009BDD12 /* PlatesLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatesLibrary.swift; sourceTree = "<group>"; };
+		FEFBEE362289EE5300C38737 /* SideCabinetOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCabinetOptionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +155,7 @@
 			children = (
 				FE3E6892226E4D80008C8CE5 /* CalculatorViewController */,
 				FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */,
-				FE3E688D226E4D3C008C8CE5 /* SideCabinetViewController.swift */,
+				FE3E688D226E4D3C008C8CE5 /* SideCabinetController.swift */,
 				FE3E68AC226E5431008C8CE5 /* BaseViewController */,
 			);
 			path = Controllers;
@@ -188,7 +192,8 @@
 				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
 				FE3E68AF226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift */,
 				FE3E68A8226E53C2008C8CE5 /* CalculatorTableCell.swift */,
-				FE49F7A4228353B80007D7A8 /* __BarVisualizerTableViewCell */,
+				FE49F7A4228353B80007D7A8 /* BarVisualizerTableViewCell */,
+				FEFBEE362289EE5300C38737 /* SideCabinetOptionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -223,13 +228,13 @@
 			path = BaseViewController;
 			sourceTree = "<group>";
 		};
-		FE49F7A4228353B80007D7A8 /* __BarVisualizerTableViewCell */ = {
+		FE49F7A4228353B80007D7A8 /* BarVisualizerTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				FE49F7A2228353920007D7A8 /* BarVisualizerTableViewCell.swift */,
 				FE49F7C622838E030007D7A8 /* SkinnyPlateView.swift */,
 			);
-			path = __BarVisualizerTableViewCell;
+			path = BarVisualizerTableViewCell;
 			sourceTree = "<group>";
 		};
 		FE49F7CF22848D370007D7A8 /* PlattTests */ = {
@@ -244,6 +249,7 @@
 		FEC93272226FEEAB009BDD12 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				FE15AC982290E38B00559D1A /* SF-Pro-Text-Bold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -329,6 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE15AC992290E38B00559D1A /* SF-Pro-Text-Bold.ttf in Resources */,
 				FE3E6882226E4C99008C8CE5 /* LaunchScreen.storyboard in Resources */,
 				FE3E687F226E4C99008C8CE5 /* Assets.xcassets in Resources */,
 			);
@@ -351,7 +358,7 @@
 				FE3E68A9226E53C2008C8CE5 /* CalculatorTableCell.swift in Sources */,
 				FE3E68AE226E5762008C8CE5 /* PlateView.swift in Sources */,
 				FE3E68B4226F7C61008C8CE5 /* Enums.swift in Sources */,
-				FE3E688E226E4D3C008C8CE5 /* SideCabinetViewController.swift in Sources */,
+				FE3E688E226E4D3C008C8CE5 /* SideCabinetController.swift in Sources */,
 				FE49F7A3228353920007D7A8 /* BarVisualizerTableViewCell.swift in Sources */,
 				FE3E6898226E4E8D008C8CE5 /* PlateSumTableViewCell.swift in Sources */,
 				FE3E6894226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift in Sources */,
@@ -362,6 +369,7 @@
 				FE3E68A5226E4F23008C8CE5 /* UIFont+Design.swift in Sources */,
 				FE3E689A226E4ECB008C8CE5 /* Plate.swift in Sources */,
 				FEC3A05B226F937000111B59 /* RoundedCornersView.swift in Sources */,
+				FEFBEE372289EE5300C38737 /* SideCabinetOptionCell.swift in Sources */,
 				FE3E68A1226E4F23008C8CE5 /* UIView+Convenience.swift in Sources */,
 				FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */,
 				FE49F7D922848E4A0007D7A8 /* DJView.swift in Sources */,

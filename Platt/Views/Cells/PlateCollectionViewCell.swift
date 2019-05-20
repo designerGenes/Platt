@@ -15,7 +15,7 @@ class PlateCollectionViewCell: UICollectionViewCell {
     func loadPlate(plate: Plate, position: Int) {
         plateView.plate = plate
         
-        let percentSize = min(1, Double(position) / Double(PlatesLibrary.defaultPlates.count))
+        let percentSize = min(1, Double(position) / Double(PlatesLibrary.defaultPlates(measurementSystem: .english).count))
         let inset = ((40 * CGFloat(1 - percentSize)) / 2)
         contentView.layoutMargins = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }

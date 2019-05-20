@@ -88,7 +88,7 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
         case 1:  // plate addition
             let plateCollectionCell = out as! PlateCollectionTableViewCell
             plateCollectionCell.delegate = self
-            plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates) // TMP!
+            plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates(measurementSystem: plateCalculator.measurementSystem)) // TMP!
         case 2: // bar visualizer
             let barVisualizerCell = out as! BarVisualizerTableViewCell
             let barVView = barVisualizerCell.barVisualizeView

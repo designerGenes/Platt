@@ -8,11 +8,39 @@
 
 import UIKit
 
-class PlateView: UIView {
+class PlateView: DJView {
+    var unitWeightLabel = UILabel()
     var plate: Plate? {
         didSet {
-            backgroundColor = plate?.color
+            guard let plate = plate else {
+                return
+            }
+            backgroundColor = plate.color
+            
+            let unitWeight = MeasurementSystem.convert(plate: plate, to: plate.measurementSystem)
+            var unitStr = "\(unitWeight)"
+            if Double(Int(unitWeight)) == unitWeight {
+                unitStr = "\(Int(unitWeight))"
+            }
+            
+            
+            unitWeightLabel.text = "\(unitStr)"
         }
+    }
+    
+    override func setup() {
+        addSubview(unitWeightLabel)
+        unitWeightLabel.translatesAutoresizingMaskIntoConstraints = false
+        addConstraints([
+            unitWeightLabel.centerYAnchor.constraint(equalTo: layoutMarginsGuide.centerYAnchor),
+            unitWeightLabel.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
+            unitWeightLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor),
+            unitWeightLabel.heightAnchor.constraint(equalTo: layoutMarginsGuide.heightAnchor),
+            ])
+        unitWeightLabel.font = .sfProDisplayBold(size: 34)
+        unitWeightLabel.adjustsFontSizeToFitWidth = true
+        unitWeightLabel.textAlignment = .center
+        
     }
     
     override func layoutSubviews() {
