@@ -1,0 +1,38 @@
+//
+//  CalculatorViewControllerViewController.swift
+//  Platt
+//
+//  Created by Jaden Nation on 4/22/19.
+//  Copyright © 2019 Designer Jeans. All rights reserved.
+//
+
+import UIKit
+
+class CalculatorViewController: BaseViewController, TableViewSizingDelegate {
+    private let tableView = StaticListTableView<CalculatorTableDataSource>()
+    
+    // MARK: - StaticListTableViewDelegate methods
+    func heightForFooter(at section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func heightForHeader(at section: Int) -> CGFloat {
+        return section < 1 ? 24 : 0
+    }
+    
+    func heightForRow(at indexPath: IndexPath) -> CGFloat {
+        switch tableView.staticListDataSource!.cellIdsInOrder[indexPath.section] {
+        case is BarVisualizerTableViewCell.Type: return 120
+        default: return UITableView.automaticDimension
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        view.coverSelfEntirely(with: tableView, obeyMargins: false)
+        tableView.staticListDataSource?.delegate = self
+        tableView.reloadData()
+    }
+}
+

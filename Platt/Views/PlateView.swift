@@ -45,6 +45,6 @@ class PlateView: DJView {
     
     override func layoutSubviews() {
         layer.masksToBounds = true
-        layer.cornerRadius = frame.size.height / 2
+        layer.cornerRadius = frame.size.height / 6
     }
 }
