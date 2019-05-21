@@ -159,7 +159,7 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
 }
 
 
-class BarVisualizerTableViewCell: CalculatorTableCell {
+class BarVisualizerTableViewCell: DJView.DJTableViewCell {
     let barVisualizerView = BarVisualizerView()
     weak var delegate: PlateCollectionDelegate?
     

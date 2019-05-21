@@ -12,7 +12,7 @@ import UIKit
 
 
 // contains a collection view
-class CalculatorCollectionTableViewCell<CellType: UICollectionViewCell, DataType>: DJView.DJTableCell, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CalculatorCollectionTableViewCell<CellType: UICollectionViewCell, DataType>: DJView.DJTableViewCell, UIScrollViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     var lastOffset: CGPoint = .zero
     private var touchIsDown: Bool = false
     var collectionView: CollectionViewWithSize!

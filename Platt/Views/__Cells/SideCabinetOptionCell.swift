@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SideCabinetOptionCell: CalculatorTableCell {
+class SideCabinetOptionCell: DJView.DJTableViewCell {
     private var shellView = UIView()
     private var icon: UIImageView = UIImageView()
     private var titleLabel = UILabel()

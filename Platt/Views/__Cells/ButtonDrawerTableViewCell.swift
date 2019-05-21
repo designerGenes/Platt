@@ -86,7 +86,7 @@ class ButtonDrawerCollectionView: UICollectionView {
     }
 }
 
-class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ButtonDrawerTableViewCell: DJView.DJTableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     var collectionView: ButtonDrawerCollectionView!
     var calculator: PlateCalculator?
     weak var delegate: ButtonDrawerDelegate?
@@ -115,7 +115,7 @@ class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  CalculatorTableDataSource.CalculatorTableCellId.ButtonDrawerTableViewCell.rawValue, for: indexPath) as! ButtonDrawerCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:  "ButtonDrawerCollectionViewCell", for: indexPath) as! ButtonDrawerCollectionViewCell
         cell.load(drawerButtonData: data[indexPath.section], calculator: calculator!) // TMP!
         return cell
     }
@@ -135,7 +135,7 @@ class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource
         collectionView.showsHorizontalScrollIndicator = false
         coverSelfEntirely(with: collectionView, obeyMargins: false)
         collectionView.backgroundColor = .clear
-        collectionView.register(ButtonDrawerCollectionViewCell.self, forCellWithReuseIdentifier: CalculatorTableDataSource.CalculatorTableCellId.ButtonDrawerTableViewCell.rawValue)
+        collectionView.register(ButtonDrawerCollectionViewCell.self, forCellWithReuseIdentifier: "ButtonDrawerTableViewCell")
         collectionView.delegate = self
         collectionView.dataSource = self
     }
