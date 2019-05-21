@@ -30,7 +30,7 @@ class PlateSumTableViewCell: CalculatorTableCell {
         super.setup()
         backgroundColor = .clear
         contentView.coverSelfEntirely(with: lblSum, obeyMargins: true)
-        lblSum.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        lblSum.heightAnchor.constraint(equalToConstant: 88).isActive = true
         lblSum.backgroundColor = .white
         lblSum.font = .boldSystemFont(ofSize: 40)
         lblSum.textAlignment = .right

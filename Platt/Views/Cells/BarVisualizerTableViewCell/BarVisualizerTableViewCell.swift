@@ -21,7 +21,7 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
         }
         return out
     }
-    
+
     private let xSpacing: CGFloat = 20
 
     @objc func clickedLoadedPlate(sender: UITapGestureRecognizer) {
@@ -114,6 +114,10 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
         scrollView.setContentOffset(CGPoint(x: computedX, y: scrollView.contentOffset.y), animated: false)
     }
     
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: size.width, height: 120)
+    }
+    
     override func setup() {
         addSubview(scrollViewContainer)
         scrollViewContainer.backgroundColor = .lighterBgroundGray()
@@ -156,17 +160,22 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
 
 
 class BarVisualizerTableViewCell: CalculatorTableCell {
-    var barVisualizeView = BarVisualizerView()
+    let barVisualizerView = BarVisualizerView()
     weak var delegate: PlateCollectionDelegate?
     
     // MARK: - PlateCollectionTableViewCellDelegate methods
     func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell) {
-        barVisualizeView.loadPlates(plates: [plate])
+        barVisualizerView.loadPlates(plates: [plate])
+    }
+        
+    override var intrinsicContentSize: CGSize {
+        barVisualizerView.sizeToFit()
+        return barVisualizerView.frame.size
     }
     
     override func setup() {
         super.setup()
-        coverSelfEntirely(with: barVisualizeView)
+        coverSelfEntirely(with: barVisualizerView)
     }
     
     

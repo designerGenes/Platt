@@ -80,8 +80,14 @@ protocol ButtonDrawerDelegate: class {
     func didTapDrawerButton(buttonType: DrawerButtonType)
 }
 
+class ButtonDrawerCollectionView: UICollectionView {
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: super.intrinsicContentSize.width, height: 140)
+    }
+}
+
 class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    var collectionView: UICollectionView!
+    var collectionView: ButtonDrawerCollectionView!
     var calculator: PlateCalculator?
     weak var delegate: ButtonDrawerDelegate?
     private var data: [DrawerButtonType] = [
@@ -125,7 +131,7 @@ class ButtonDrawerTableViewCell: CalculatorTableCell, UICollectionViewDataSource
         flowLayout.scrollDirection = .horizontal
         flowLayout.estimatedItemSize = CGSize(width: 24, height: 24)
 //        flowLayout.itemSize = CGSize(width: 24, height: 24) //UICollectionViewFlowLayout.automaticSize
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView = ButtonDrawerCollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         coverSelfEntirely(with: collectionView, obeyMargins: false)
         collectionView.backgroundColor = .clear

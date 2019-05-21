@@ -12,6 +12,12 @@ protocol PlateCollectionDelegate: class {
     func didSelectPlate(plate: Plate, sender: UIView)
 }
 
+class CollectionViewWithSize: UICollectionView {
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: contentSize.width, height: 100)
+    }
+}
+
 // contains lateral collection of Plate cells
 class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -33,8 +39,9 @@ class PlateCollectionTableViewCell: CalculatorTableCell, UICollectionViewDataSou
 
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.estimatedItemSize = CGSize(width: 13, height: 13)
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        flowLayout.estimatedItemSize = CGSize(width: 13, height: 53)
+        
+        collectionView = CollectionViewWithSize(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         coverSelfEntirely(with: collectionView, obeyMargins: false)
         collectionView.backgroundColor = .clear

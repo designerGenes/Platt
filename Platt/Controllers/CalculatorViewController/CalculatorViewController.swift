@@ -15,8 +15,8 @@ class CalculatorViewController: BaseViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = CalculatorTableDataSource(tableView: tableView)
-        view.layoutMargins = UIEdgeInsets(top: 48, left: 0, bottom: 16, right: 0)
-        view.coverSelfEntirely(with: tableView, obeyMargins: false)
+        view.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        view.coverSelfEntirely(with: tableView, obeyMargins: false) 
         
         tableView.backgroundColor = .clear        
         tableView.dataSource = dataSource
@@ -32,7 +32,13 @@ class CalculatorViewController: BaseViewController, UITableViewDelegate {
 
     // MARK: - UITableViewDelegate methods
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140 //UITableView.automaticDimension
+        let cellId = CalculatorTableDataSource.CalculatorTableCellId.inOrder()[indexPath.section]
+        switch cellId {
+        case .BarVisualizerTableViewCell:
+            return dataSource[cellId]?.intrinsicContentSize.height ?? 120
+        default: return UITableView.automaticDimension
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -40,7 +46,7 @@ class CalculatorViewController: BaseViewController, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return 24
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

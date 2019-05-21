@@ -15,6 +15,10 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
     var plateCalculator = PlateCalculator()
     weak var tableView: UITableView?
     
+    subscript(id: CalculatorTableCellId) -> CalculatorTableCell? {
+        return cellRefs[id]
+    }
+    
     init(tableView: UITableView) {
         super.init()
         tableView.dataSource = self
@@ -91,7 +95,7 @@ class CalculatorTableDataSource: NSObject, UITableViewDataSource, PlateCalculato
             plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates(measurementSystem: plateCalculator.measurementSystem)) // TMP!
         case 2: // bar visualizer
             let barVisualizerCell = out as! BarVisualizerTableViewCell
-            let barVView = barVisualizerCell.barVisualizeView
+            let barVView = barVisualizerCell.barVisualizerView
             barVisualizerCell.delegate = self
             barVView.loadPlates(plates: plateCalculator.plates)
         case 3:  // options
