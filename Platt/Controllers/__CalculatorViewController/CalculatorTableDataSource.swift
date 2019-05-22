@@ -13,18 +13,17 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorD
     
     var plateCalculator = PlateCalculator()
     
-
     required init<T>(tableView: StaticListTableView<T>) where T : StaticListTableViewDataSource {
         super.init(tableView: tableView)
         plateCalculator.delegate = self
     }
     
-    override var cellIdsInOrder: [DJView.DJTableViewCell.Type] {
+    override var cellTypesInOrder: [ModernView.ModernTableViewCell.Type] {
         return [
             PlateSumTableViewCell.self,
             PlateCollectionTableViewCell.self,
             BarVisualizerTableViewCell.self,
-            ButtonDrawerTableViewCell.self
+            //            ButtonDrawerTableViewCell.self
         ]
     }
     
@@ -56,9 +55,9 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorD
     func didUpdateSum(sum: Double, in calculator: PlateCalculator) {
         
         
-        if let plateCollectionCell = self[PlateCollectionTableViewCell.self] as? PlateCollectionTableViewCell {
-            plateCollectionCell.resetToLastX()
-        }
+//        if let plateCollectionCell = self[PlateCollectionTableViewCell.self] as? PlateCollectionTableViewCell {
+////            plateCollectionCell.resetToLastX()
+//        }
     }
     
     func didUpdateConfigOption(option: CalculatorConfigOption, in calculator: PlateCalculator) {
@@ -68,11 +67,16 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorD
 //        }
     }
     
-    override func loadDataIntoCell(cell: DJView.DJTableViewCell, at indexPath: IndexPath) {
+    override func loadDataIntoCell(cell: ModernView.ModernTableViewCell, at indexPath: IndexPath) {
         switch cell {
         case is PlateSumTableViewCell:
             break
         case is PlateCollectionTableViewCell:
+            let plateCollectionCell = cell as! PlateCollectionTableViewCell
+            let defaultPlates = PlatesLibrary.defaultPlates(measurementSystem: plateCalculator.measurementSystem) // TMP!
+            plateCollectionCell.dataSource?.loadPlates(plates: defaultPlates)
+            
+
             break
         case is BarVisualizerTableViewCell:
             break
@@ -87,7 +91,6 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorD
              case 1:  // plate addition
              let plateCollectionCell = out as! PlateCollectionTableViewCell
              plateCollectionCell.delegate = self
-             plateCollectionCell.loadPlates(plates: PlatesLibrary.defaultPlates(measurementSystem: plateCalculator.measurementSystem)) // TMP!
              case 2: // bar visualizer
              let barVisualizerCell = out as! BarVisualizerTableViewCell
              let barVView = barVisualizerCell.barVisualizerView

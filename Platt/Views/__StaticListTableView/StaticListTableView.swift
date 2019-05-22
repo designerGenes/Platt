@@ -8,17 +8,19 @@
 
 import UIKit
 
-class StaticListTableView<DSourceType: StaticListTableViewDataSource>: DJView.DJTableView {
-    var staticListDataSource: DSourceType? {
+class StaticListTableView<DS: StaticListTableViewDataSource>: ModernView.ModernTableView {
+    var staticListDataSource: DS? {
         didSet {
             dataSource = staticListDataSource
         }
     }
     
-    
     override func setup() {
-        staticListDataSource = DSourceType(tableView: self)
-        for cellId in staticListDataSource!.cellIdsInOrder {
+        super.setup()
+        staticListDataSource = DS(tableView: self)
+        delegate = staticListDataSource
+        separatorStyle = .none
+        for cellId in staticListDataSource!.cellTypesInOrder {
             register(cellId.self, forCellReuseIdentifier: staticListDataSource!.typeName(type: cellId))
         }
     }

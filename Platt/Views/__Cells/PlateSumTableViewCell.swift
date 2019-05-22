@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlateSumTableViewCell: DJView.DJTableViewCell {
+class PlateSumTableViewCell: ModernView.ModernTableViewCell {
     private var lblSum = InsetLabel(textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32))
         
     func reflectSum(in calculator: PlateCalculator) {

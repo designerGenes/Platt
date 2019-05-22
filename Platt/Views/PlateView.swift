@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlateView: DJView {
+class PlateView: ModernView {
     var unitWeightLabel = UILabel()
     var plate: Plate? {
         didSet {
@@ -40,7 +40,6 @@ class PlateView: DJView {
         unitWeightLabel.font = .sfProDisplayBold(size: 34)
         unitWeightLabel.adjustsFontSizeToFitWidth = true
         unitWeightLabel.textAlignment = .center
-        
     }
     
     override func layoutSubviews() {

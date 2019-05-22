@@ -131,7 +131,6 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         scrollViewContainer.addSubview(scrollView)
         scrollView.addSubview(barView)
-        
     }
     
     override func addConstraints() {
@@ -146,9 +145,9 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
             scrollView.widthAnchor.constraint(equalTo: scrollViewContainer.widthAnchor),
             scrollView.heightAnchor.constraint(equalTo: barView.heightAnchor),
             ])
-//
-//        barWidthConstraint = barView.widthAnchor.constraint(equalToConstant: 50)
-//        barWidthConstraint?.isActive = true
+        //
+        //        barWidthConstraint = barView.widthAnchor.constraint(equalToConstant: 50)
+        //        barWidthConstraint?.isActive = true
     }
     
     // MARK: - UIScrollViewDelegate methods
@@ -159,7 +158,7 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
 }
 
 
-class BarVisualizerTableViewCell: DJView.DJTableViewCell {
+class BarVisualizerTableViewCell: ModernView.ModernTableViewCell {
     let barVisualizerView = BarVisualizerView()
     weak var delegate: PlateCollectionDelegate?
     

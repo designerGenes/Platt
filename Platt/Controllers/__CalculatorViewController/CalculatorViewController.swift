@@ -17,11 +17,11 @@ class CalculatorViewController: BaseViewController, TableViewSizingDelegate {
     }
     
     func heightForHeader(at section: Int) -> CGFloat {
-        return section < 1 ? 24 : 0
+        return section < 1 ? 32 : 16
     }
     
     func heightForRow(at indexPath: IndexPath) -> CGFloat {
-        switch tableView.staticListDataSource!.cellIdsInOrder[indexPath.section] {
+        switch tableView.staticListDataSource!.cellTypesInOrder[indexPath.section] {
         case is BarVisualizerTableViewCell.Type: return 120
         default: return UITableView.automaticDimension
         }
@@ -29,10 +29,12 @@ class CalculatorViewController: BaseViewController, TableViewSizingDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        view.layoutMargins = .zero
+        tableView.backgroundColor = .spotifyGray()
         view.coverSelfEntirely(with: tableView, obeyMargins: false)
-        tableView.staticListDataSource?.delegate = self
+        tableView.staticListDataSource?.sizingDelegate = self
         tableView.reloadData()
+        
     }
 }
 

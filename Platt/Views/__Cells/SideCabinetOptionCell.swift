@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SideCabinetOptionCell: DJView.DJTableViewCell {
+class SideCabinetOptionCell: ModernView.ModernTableViewCell {
     private var shellView = UIView()
     private var icon: UIImageView = UIImageView()
     private var titleLabel = UILabel()

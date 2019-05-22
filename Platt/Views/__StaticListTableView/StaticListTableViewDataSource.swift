@@ -15,10 +15,10 @@ protocol TableViewSizingDelegate: class {
 }
 
 class StaticListTableViewDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
-    private var cellRefs = [String: DJView.DJTableViewCell]()  // live instances
+    private var cellRefs = [String: ModernView.ModernTableViewCell]()  // live instances
     private weak var tableView: StaticListTableView<StaticListTableViewDataSource>?
-    weak var delegate: TableViewSizingDelegate?
-    var cellIdsInOrder: [DJView.DJTableViewCell.Type] {
+    weak var sizingDelegate: TableViewSizingDelegate?
+    var cellTypesInOrder: [ModernView.ModernTableViewCell.Type] {
         return []
     }
     
@@ -31,11 +31,11 @@ class StaticListTableViewDataSource: NSObject, UITableViewDataSource, UITableVie
         self.tableView = tableView as? StaticListTableView<StaticListTableViewDataSource>
     }
     
-    subscript(type: DJView.DJTableViewCell.Type) -> DJView.DJTableViewCell? {
+    subscript(type: ModernView.ModernTableViewCell.Type) -> ModernView.ModernTableViewCell? {
         return cellRefs[typeName(type: type)]
     }
     
-    open func loadDataIntoCell(cell: DJView.DJTableViewCell, at indexPath: IndexPath) {
+    open func loadDataIntoCell(cell: ModernView.ModernTableViewCell, at indexPath: IndexPath) {
         // override this
     }
     
@@ -44,12 +44,12 @@ class StaticListTableViewDataSource: NSObject, UITableViewDataSource, UITableVie
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return cellIdsInOrder.count
+        return cellTypesInOrder.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseId = typeName(type: cellIdsInOrder[indexPath.section])
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! DJView.DJTableViewCell
+        let reuseId = typeName(type: cellTypesInOrder[indexPath.section])
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseId, for: indexPath) as! ModernView.ModernTableViewCell
         loadDataIntoCell(cell: cell, at: indexPath)
         cellRefs[reuseId] = cell
         return cell
@@ -57,7 +57,7 @@ class StaticListTableViewDataSource: NSObject, UITableViewDataSource, UITableVie
     
     // MARK: - UITableViewDelegate methods
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return delegate?.heightForRow(at: indexPath) ?? UITableView.automaticDimension
+        return sizingDelegate?.heightForRow(at: indexPath) ?? UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -65,11 +65,11 @@ class StaticListTableViewDataSource: NSObject, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return delegate?.heightForHeader(at: section) ?? 0
+        return sizingDelegate?.heightForHeader(at: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return delegate?.heightForFooter(at: section) ?? 0
+        return sizingDelegate?.heightForFooter(at: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
