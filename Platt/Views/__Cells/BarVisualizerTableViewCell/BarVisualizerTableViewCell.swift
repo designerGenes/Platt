@@ -26,9 +26,7 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
 
     @objc func clickedLoadedPlate(sender: UITapGestureRecognizer) {
         let cellSuper = superview as! BarVisualizerTableViewCell
-        let senderPlateView = sender.view as! SkinnyPlateView
-        let senderPlate = plates.filter({$0.plateView == senderPlateView}).first!.plate
-        cellSuper.delegate?.didSelectPlate(plate: senderPlate, sender: cellSuper)
+//        cellSuper.collec
         
 //        removePlates(plateViews: )
     }
@@ -160,7 +158,11 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
 
 class BarVisualizerTableViewCell: ModernView.ModernTableViewCell {
     let barVisualizerView = BarVisualizerView()
-    weak var delegate: PlateCollectionDelegate?
+    
+    
+    @objc func reflectSum(notification: Notification) {
+        
+    }
     
     // MARK: - PlateCollectionTableViewCellDelegate methods
     func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell) {
@@ -172,9 +174,14 @@ class BarVisualizerTableViewCell: ModernView.ModernTableViewCell {
         return barVisualizerView.frame.size
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .calculatorUpdatedSum, object: nil)
+    }
+    
     override func setup() {
         super.setup()
         coverSelfEntirely(with: barVisualizerView)
+        NotificationCenter.default.addObserver(self, selector: #selector(BarVisualizerTableViewCell.reflectSum(notification:)), name: .calculatorUpdatedSum, object: nil)
     }
     
     

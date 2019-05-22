@@ -88,7 +88,7 @@ class CollectionDataSource<CellType: ModernView.ModernCollectionViewCell, DataTy
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelectItem(at: indexPath)
+        didSelectCell(data: data[indexPath.section], at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -106,7 +106,7 @@ class CollectionDataSource<CellType: ModernView.ModernCollectionViewCell, DataTy
         
     }
     
-    open func didSelectItem(at indexPath: IndexPath) {
+    open func didSelectCell(data: DataType, at indexPath: IndexPath) {
         // override this
     }
     

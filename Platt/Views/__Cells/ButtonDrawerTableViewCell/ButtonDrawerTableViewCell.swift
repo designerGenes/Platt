@@ -64,6 +64,7 @@ class ButtonDrawerCollectionDataSource: CollectionDataSource<ButtonDrawerCollect
             cell.load(drawerButtonData: data[indexPath.section], calculator: calculator)
         }
     }
+
     
     // MARK: - CollectionViewSizingDelegate methods
     override func widthForHeader(at section: Int) -> CGFloat {

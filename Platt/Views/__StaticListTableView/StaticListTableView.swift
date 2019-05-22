@@ -17,6 +17,7 @@ class StaticListTableView<DS: StaticListTableViewDataSource>: ModernView.ModernT
     
     override func setup() {
         super.setup()
+        
         staticListDataSource = DS(tableView: self)
         delegate = staticListDataSource
         separatorStyle = .none

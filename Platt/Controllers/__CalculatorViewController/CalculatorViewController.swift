@@ -35,6 +35,7 @@ class CalculatorViewController: BaseViewController, TableViewSizingDelegate {
         tableView.staticListDataSource?.sizingDelegate = self
         tableView.reloadData()
         
+        
     }
 }
 

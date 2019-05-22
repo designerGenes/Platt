@@ -8,18 +8,7 @@
 
 import UIKit
 
-protocol PlateCollectionDelegate: class {
-    func didSelectPlate(plate: Plate, sender: UIView)
-}
-
-class CollectionViewWithSize: ModernView.ModernCollectionView {
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: contentSize.width, height: 100)
-    }
-}
-
 class PlateCollectionDataSource: CollectionDataSource<PlateCollectionViewCell, Plate> {
-    weak var delegate: PlateCollectionTableViewCell?
     override func loadDataIntoCell(cell: PlateCollectionViewCell, at indexPath: IndexPath) {
         cell.loadPlate(plate: data[indexPath.section], position: 1)
     }
@@ -28,8 +17,8 @@ class PlateCollectionDataSource: CollectionDataSource<PlateCollectionViewCell, P
         return 50
     }
     
-    override func didSelectItem(at indexPath: IndexPath) {
-        delegate?.didSelectPlate(plate: data[indexPath.section], sender: self)
+    override func didSelectCell(data: Plate, at indexPath: IndexPath) {
+        PlateCalculator.activeInstance.add(plate: data)
     }
     
     func loadPlates(plates: [Plate]) {
@@ -38,16 +27,17 @@ class PlateCollectionDataSource: CollectionDataSource<PlateCollectionViewCell, P
     }
 }
 
+class PlateCollectionView: TypedCollectionView<PlateCollectionViewCell, Plate, PlateCollectionDataSource> {
+    // convenience
+}
+
 // contains lateral collection of Plate cells
-class PlateCollectionTableViewCell: CollectionTableViewCell<PlateCollectionViewCell, Plate, PlateCollectionDataSource, TypedCollectionView<PlateCollectionViewCell, Plate, PlateCollectionDataSource>> {
-    weak var delegate: PlateCollectionDelegate?
+class PlateCollectionTableViewCell: CollectionTableViewCell<PlateCollectionViewCell, Plate, PlateCollectionDataSource, PlateCollectionView> {
+    
     
     override func setup() {
         super.setup()
         backgroundColor = .spotifyMud()
     }
     
-    func didSelectPlate(plate: Plate, sender: PlateCollectionDataSource) {
-
-    }
 }

@@ -9,14 +9,9 @@
 import Foundation
 import UIKit
 
-class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorDelegate, ButtonDrawerDelegate, PlateCollectionDelegate  {
+class CalculatorTableDataSource: StaticListTableViewDataSource, ButtonDrawerDelegate  {
     
-    var plateCalculator = PlateCalculator()
-    
-    required init<T>(tableView: StaticListTableView<T>) where T : StaticListTableViewDataSource {
-        super.init(tableView: tableView)
-        plateCalculator.delegate = self
-    }
+    let plateCalculator = PlateCalculator.activeInstance // calls all the shots after init
     
     override var cellTypesInOrder: [ModernView.ModernTableViewCell.Type] {
         return [
@@ -26,18 +21,6 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorD
             ButtonDrawerTableViewCell.self
         ]
     }
-    
-    // MARK: - PlateCollectionCellDelegate methods
-    func didSelectPlate(plate: Plate, sender: UIView) {
-        switch sender {
-//        case self[.PlateCollectionTableViewCell]:
-//            plateCalculator.add(plate: plate)
-//        case self[.BarVisualizerTableViewCell]:
-//            plateCalculator.remove(plate: plate)
-        default: break
-        }
-    }
-    
     
     // MARK: - ButtonDrawerDelegate methods
     func didTapDrawerButton(buttonType: DrawerButtonType) {
@@ -51,58 +34,25 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorD
         }
     }
     
-    // MARK: - PlateCalculatorDelegate methods
-    func didUpdateSum(sum: Double, in calculator: PlateCalculator) {
-        
-        
-//        if let plateCollectionCell = self[PlateCollectionTableViewCell.self] as? PlateCollectionTableViewCell {
-////            plateCollectionCell.resetToLastX()
-//        }
-    }
-    
-    func didUpdateConfigOption(option: CalculatorConfigOption, in calculator: PlateCalculator) {
-        
-//        switch option {
-//        default: tableView?.reloadData()
-//        }
-    }
-    
+    // load initial data
     override func loadDataIntoCell(cell: ModernView.ModernTableViewCell, at indexPath: IndexPath) {
         switch cell {
         case is PlateSumTableViewCell:
-            break
+            let sumCell = cell as! PlateSumTableViewCell
+            sumCell.reflectSum(sum: plateCalculator.sum())
         case is PlateCollectionTableViewCell:
             let plateCollectionCell = cell as! PlateCollectionTableViewCell
             let defaultPlates = PlatesLibrary.defaultPlates(measurementSystem: plateCalculator.measurementSystem) // TMP!
             plateCollectionCell.dataSource?.loadPlates(plates: defaultPlates)
-            
-
-            break
         case is BarVisualizerTableViewCell:
-            break
+            let barVisualizerCell = cell as! BarVisualizerTableViewCell
+            barVisualizerCell.barVisualizerView.loadPlates(plates: plateCalculator.plates)
         case is ButtonDrawerTableViewCell:
             let buttonDrawerCell = cell as! ButtonDrawerTableViewCell
             buttonDrawerCell.dataSource?.calculator = plateCalculator
+            buttonDrawerCell.delegate = self
         default:
             break
-            
-            /*
-             case 0:  // plate sum
-             (out as? PlateSumTableViewCell)?.reflectSum(in: plateCalculator)
-             case 1:  // plate addition
-             let plateCollectionCell = out as! PlateCollectionTableViewCell
-             plateCollectionCell.delegate = self
-             case 2: // bar visualizer
-             let barVisualizerCell = out as! BarVisualizerTableViewCell
-             let barVView = barVisualizerCell.barVisualizerView
-             barVisualizerCell.delegate = self
-             barVView.loadPlates(plates: plateCalculator.plates)
-             case 3:  // options
-             let buttonDrawerCell = out as! ButtonDrawerTableViewCell
-             buttonDrawerCell.calculator = plateCalculator
-             buttonDrawerCell.delegate = self
-             buttonDrawerCell.collectionView.reloadData()
-             */
         }
     }
 }

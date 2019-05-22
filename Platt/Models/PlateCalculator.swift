@@ -9,36 +9,45 @@
 import Foundation
 import UIKit
 
-
-
 enum CalculatorConfigOption {
     case multiplier, measurementSystem
 }
 
-protocol PlateCalculatorDelegate: class {
-    func didUpdateSum(sum: Double, in calculator: PlateCalculator)
-    func didUpdateConfigOption(option: CalculatorConfigOption, in calculator: PlateCalculator)
+extension Notification.Name {
+    static let calculatorUpdatedSum = Notification.Name("calculatorUpdatedSum")
+    static let calculatorUpdatedConfigOption = Notification.Name("calculatorUpdatedConfigOption")
 }
 
 class PlateCalculator: NSObject {
+    static let activeInstance: PlateCalculator = PlateCalculator()
     var plates = [Plate]() {
         didSet {
-            delegate?.didUpdateSum(sum: sum(), in: self)
+            updateListeners(name: .calculatorUpdatedSum)
         }
     }
     private var configOptions = [CalculatorConfigOption: Any]()
-    weak var delegate: PlateCalculatorDelegate?
+
+    func updateListeners(name: Notification.Name) {
+        var obj: Any!
+        switch name {
+        case .calculatorUpdatedSum:
+            obj = sum()
+        case .calculatorUpdatedConfigOption:
+            obj = configOptions
+        default: break
+        }
+        NotificationCenter.default.post(name: name, object: nil, userInfo: ["obj": obj])
+    }
     
     func setConfigOption(option: CalculatorConfigOption, val: Any) {
         configOptions[option] = val
-        delegate?.didUpdateConfigOption(option: option, in: self)
+        updateListeners(name: .calculatorUpdatedConfigOption)
     }
     
     func getConfigOption(option: CalculatorConfigOption) -> Any {
         switch option {
         case .multiplier: return multiplier
         case .measurementSystem: return measurementSystem
-        default: return configOptions[option]
         }
     }
     
@@ -60,16 +69,11 @@ class PlateCalculator: NSObject {
     
     func clear() {
         plates.removeAll()
-        delegate?.didUpdateSum(sum: sum(), in: self)
+        updateListeners(name: .calculatorUpdatedSum)
     }
     
     func remove(plate: Plate) {
-        let plateCount = plates.count
         plates = plates.filter({$0 != plate})
-        if plates.count != plateCount {
-            delegate?.didUpdateSum(sum: sum(), in: self)
-        }
-        
     }
     
     func sum() -> Double {

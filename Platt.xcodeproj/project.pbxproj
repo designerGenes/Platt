@@ -37,6 +37,7 @@
 		FE76A488229480E7009E4B17 /* StaticListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE76A487229480E7009E4B17 /* StaticListTableView.swift */; };
 		FE76A48B2294960A009E4B17 /* StaticListTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE76A48A2294960A009E4B17 /* StaticListTableViewDataSource.swift */; };
 		FEBFCB6F2295971500573FAE /* DrawerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB6E2295971500573FAE /* DrawerButtonView.swift */; };
+		FEBFCB722295CD3100573FAE /* CollectionViewWithSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB712295CD3100573FAE /* CollectionViewWithSize.swift */; };
 		FEC3A057226F8D7600111B59 /* UIImage+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */; };
 		FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A058226F8E3A00111B59 /* InsetLabel.swift */; };
 		FEC3A05B226F937000111B59 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A05A226F937000111B59 /* RoundedCornersView.swift */; };
@@ -89,6 +90,7 @@
 		FE76A487229480E7009E4B17 /* StaticListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticListTableView.swift; sourceTree = "<group>"; };
 		FE76A48A2294960A009E4B17 /* StaticListTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticListTableViewDataSource.swift; sourceTree = "<group>"; };
 		FEBFCB6E2295971500573FAE /* DrawerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerButtonView.swift; sourceTree = "<group>"; };
+		FEBFCB712295CD3100573FAE /* CollectionViewWithSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewWithSize.swift; sourceTree = "<group>"; };
 		FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Asset.swift"; sourceTree = "<group>"; };
 		FEC3A058226F8E3A00111B59 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		FEC3A05A226F937000111B59 /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				FEC3A05A226F937000111B59 /* RoundedCornersView.swift */,
 				FE49F7D822848E4A0007D7A8 /* ModernView.swift */,
 				FE76A48922948EB0009E4B17 /* __StaticListTableView */,
+				FEBFCB712295CD3100573FAE /* CollectionViewWithSize.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */,
 				FE49F7D922848E4A0007D7A8 /* ModernView.swift in Sources */,
 				FEC3A057226F8D7600111B59 /* UIImage+Asset.swift in Sources */,
+				FEBFCB722295CD3100573FAE /* CollectionViewWithSize.swift in Sources */,
 				FE76A48B2294960A009E4B17 /* StaticListTableViewDataSource.swift in Sources */,
 				FE3E6878226E4C94008C8CE5 /* AppDelegate.swift in Sources */,
 				FE3E68A3226E4F23008C8CE5 /* UIViewController+Convenience.swift in Sources */,
