@@ -26,11 +26,9 @@ enum DrawerButtonType {
     }
 }
 
-// actual DrawerButton
-
 
 // cell containing DrawerButton
-class ButtonDrawerCollectionViewCell: DJView.DJCollectionViewCell {
+class ButtonDrawerCollectionViewCell: ModernView.ModernCollectionViewCell {
     private let drawerButtonView = DrawerButtonView()
     
     override func setup() {
@@ -48,44 +46,51 @@ protocol ButtonDrawerDelegate: class {
 }
 
 // Collection view containing ButtonDrawerCollectionViewCell's
-class ButtonDrawerCollectionView: DJView.DJCollectionView {
+class ButtonDrawerCollectionView: TypedCollectionView<ButtonDrawerCollectionViewCell, DrawerButtonType, ButtonDrawerCollectionDataSource> {
     override var intrinsicContentSize: CGSize {
         return CGSize(width: super.intrinsicContentSize.width, height: 140)
     }
 }
 
+class ButtonDrawerCollectionDataSource: CollectionDataSource<ButtonDrawerCollectionViewCell, DrawerButtonType> {
+    
+}
+
 // Table view cell containing ButtonDrawerCollectionView
-class ButtonDrawerTableViewCell: DJCollectionTableViewCell<ButtonDrawerCollectionViewCell, DrawerButtonType> {
+class ButtonDrawerTableViewCell: CollectionTableViewCell<ButtonDrawerCollectionViewCell, DrawerButtonType, ButtonDrawerCollectionDataSource, ButtonDrawerCollectionView>, CollectionViewSizingDelegate {
+    
+    // MARK: - CollectionViewSizingDelegate methods
+    func widthForHeader(at section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func widthForFooter(at section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func widthForRow(at indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+    
     
     var calculator: PlateCalculator?
     weak var delegate: ButtonDrawerDelegate?
-    override var data: [DrawerButtonType] {
-        get {
-            return [
-                .clear,
-                .toggleMultiplier,
-                .toggleMeasurementSystem
-            ]
-        }
-        
-        set {}
-    }
+//    override var data: [DrawerButtonType] {
+//        get {
+//            return [
+//                .clear,
+//                .toggleMultiplier,
+//                .toggleMeasurementSystem
+//            ]
+//        }
+//
+//        set {}
+//    }
     
-    override var cellTypes: [DJView.DJCollectionViewCell.Type] {
-        return [ButtonDrawerCollectionViewCell.self]
-    }
+//    cel : [ModernView.ModernCollectionViewCell.Type] {
+//        return [ButtonDrawerCollectionViewCell.self]
+//    }
     
-    override func headerWidth(section: Int) -> CGFloat {
-        return 0
-    }
-    
-    override func footerWidth(section: Int) -> CGFloat {
-        return 16
-    }
-    
-    override func didSelectItem(indexPath: IndexPath) {
-        //
-    }
     
     // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout methods
     

@@ -15,15 +15,48 @@ protocol CollectionViewSizingDelegate: class {
     func widthForRow(at indexPath: IndexPath) -> CGFloat
 }
 
-class ModernCollectionView<DSourceType: CollectionDataSource>: CollectionViewWithSize {
+class TypedCollectionView<CellType: ModernView.ModernCollectionViewCell, DataType, DSourceType: CollectionDataSource<CellType, DataType>>: CollectionViewWithSize {
+    var _dataSource: DSourceType? {
+        didSet {
+            dataSource = _dataSource
+        }
+    }
+    override func setup() {
+        super.setup()
+        _dataSource = DSourceType(collectionView: self)
+    }
     
+    required init(flowLayout: UICollectionViewFlowLayout) {
+        super.init(frame: .zero, collectionViewLayout: flowLayout)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
-class CollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+class CollectionDataSource<CellType: ModernView.ModernCollectionViewCell, DataType: Any>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CollectionViewSizingDelegate {
+    func widthForHeader(at section: Int) -> CGFloat {
+        // override this or assign delegate
+        return sizingDelegate?.widthForHeader(at: section) ?? 0
+    }
+    
+    func widthForFooter(at section: Int) -> CGFloat {
+        // override this or assign delegate
+        return sizingDelegate?.widthForFooter(at: section) ?? 0
+    }
+    
+    func widthForRow(at indexPath: IndexPath) -> CGFloat {
+        // override this or assign delegate
+        return sizingDelegate?.widthForRow(at: indexPath) ?? 0
+    }
+    
 
     var lastOffset: CGPoint = .zero
-    private weak var collectionView: ModernCollectionView<CollectionDataSource>?
+    weak var collectionView: ModernView.ModernCollectionView?
     weak var sizingDelegate: CollectionViewSizingDelegate?
+    var data = [DataType]()
     
     
     func typeName(type: AnyClass) -> String {
@@ -35,27 +68,23 @@ class CollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionVi
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return cellTypesInOrder.count
+        return data.count
     }
     
-    open func loadDataIntoCell(cell: ModernView.ModernCollectionViewCell, at indexPath: IndexPath) {
+    open func loadDataIntoCell(cell: CellType, at indexPath: IndexPath) {
         // override this
     }
     
-    var cellTypesInOrder: [ModernView.ModernCollectionViewCell.Type] {
-        return [] // override this
-    }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: sizingDelegate?.widthForFooter(at: section) ?? 0, height: 10)
+        return CGSize(width: widthForFooter(at: section), height: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: sizingDelegate?.widthForHeader(at: section) ?? 0, height: 10)
+        return CGSize(width: widthForHeader(at: section), height: 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: sizingDelegate?.widthForRow(at: indexPath) ?? 0, height: 50) // TMP!
+        return CGSize(width: widthForRow(at: indexPath), height: 50) // TMP!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -67,8 +96,11 @@ class CollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let reuseId = typeName(type: cellTypesInOrder[indexPath.section])
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! ModernView.ModernCollectionViewCell
+        let cellData = data[indexPath.section]
+        
+        let reuseId = String(describing: CellType.self)
+    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseId, for: indexPath) as! CellType
         loadDataIntoCell(cell: cell, at: indexPath)
         return cell
         
@@ -78,15 +110,12 @@ class CollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionVi
         // override this
     }
     
-    required init<T: CollectionDataSource>(collectionView: ModernCollectionView<T>) {
+    required init(collectionView: ModernView.ModernCollectionView) {
         super.init()
-        self.collectionView = collectionView as? ModernCollectionView<CollectionDataSource>
-        for cellType in cellTypesInOrder {
-            collectionView.register(cellType.self, forCellWithReuseIdentifier: String(describing: cellType.self))
-        }
-        
+        self.collectionView = collectionView
+        collectionView.register(CellType.self, forCellWithReuseIdentifier: String(describing: CellType.self))
+    
         collectionView.showsHorizontalScrollIndicator = false
-        
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -94,18 +123,17 @@ class CollectionDataSource: NSObject, UICollectionViewDataSource, UICollectionVi
 }
 
 // contains a collection view
-class CollectionTableViewCell<DSourceType: CollectionDataSource>: ModernView.ModernTableViewCell {
+class CollectionTableViewCell<C, D, DS: CollectionDataSource<C, D>, CV: TypedCollectionView<C, D, DS>>: ModernView.ModernTableViewCell {
     
     var collectionView: ModernView.ModernCollectionView!
 
     override func setup() {
+        super.setup()
         contentView.backgroundColor = .clear
         let flowLayout = UICollectionViewFlowLayout.init()
         flowLayout.scrollDirection = .horizontal
         flowLayout.estimatedItemSize = CGSize(width: 13, height: 53)
-        collectionView = ModernCollectionView<DSourceType>()
+        collectionView = CV(flowLayout: flowLayout)
         coverSelfEntirely(with: collectionView, obeyMargins: false)
-        
-        backgroundColor = .clear
     }
 }
