@@ -37,7 +37,7 @@ class PlateView: ModernView {
             unitWeightLabel.widthAnchor.constraint(equalTo: layoutMarginsGuide.widthAnchor),
             unitWeightLabel.heightAnchor.constraint(equalTo: layoutMarginsGuide.heightAnchor),
             ])
-        unitWeightLabel.font = .sfProDisplayBold(size: 34)
+        unitWeightLabel.font = .sfProTextBold(size: 34)
         unitWeightLabel.adjustsFontSizeToFitWidth = true
         unitWeightLabel.textAlignment = .center
     }

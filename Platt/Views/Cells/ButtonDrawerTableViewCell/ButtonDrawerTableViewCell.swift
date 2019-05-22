@@ -36,13 +36,9 @@ class ButtonDrawerCollectionViewCell: ModernView.ModernCollectionViewCell {
         coverSelfEntirely(with: drawerButtonView)
     }
     
-    func load(drawerButtonData: DrawerButtonType, calculator: PlateCalculator) {
-        drawerButtonView.load(drawerButtonData: drawerButtonData, calculator: calculator)
+    func load(drawerButtonType: DrawerButtonType, calculator: PlateCalculator) {
+        drawerButtonView.load(drawerButtonType: drawerButtonType, calculator: calculator)
     }
-}
-
-protocol ButtonDrawerDelegate: class {
-    func didTapDrawerButton(buttonType: DrawerButtonType)
 }
 
 // Collection view containing ButtonDrawerCollectionViewCell's
@@ -53,26 +49,27 @@ class ButtonDrawerCollectionView: TypedCollectionView<ButtonDrawerCollectionView
 }
 
 class ButtonDrawerCollectionDataSource: CollectionDataSource<ButtonDrawerCollectionViewCell, DrawerButtonType> {
-    var calculator: PlateCalculator?
     override var data: [DrawerButtonType] {
         get { return [.clear, .toggleMultiplier, .toggleMeasurementSystem] }
         set {}
     }
     
     override func loadDataIntoCell(cell: ButtonDrawerCollectionViewCell, at indexPath: IndexPath) {
-        if let calculator = calculator {
-            cell.load(drawerButtonData: data[indexPath.section], calculator: calculator)
-        }
+        cell.load(drawerButtonType: data[indexPath.section], calculator: PlateCalculator.activeInstance)
+    }
+    
+    override func didSelectCell(data: DrawerButtonType, at indexPath: IndexPath) {
+        NotificationCenter.default.post(name: .calculatorShouldUpdateConfigOption, object: nil, userInfo: [CalculatorProperty.configOption.rawValue: data])
     }
 
     
     // MARK: - CollectionViewSizingDelegate methods
     override func widthForHeader(at section: Int) -> CGFloat {
-        return 10
+        return 0
     }
     
     override func widthForFooter(at section: Int) -> CGFloat {
-        return 10
+        return 20
     }
     
     override func widthForRow(at indexPath: IndexPath) -> CGFloat {
@@ -83,6 +80,6 @@ class ButtonDrawerCollectionDataSource: CollectionDataSource<ButtonDrawerCollect
 
 // Table view cell containing ButtonDrawerCollectionView
 class ButtonDrawerTableViewCell: CollectionTableViewCell<ButtonDrawerCollectionViewCell, DrawerButtonType, ButtonDrawerCollectionDataSource, ButtonDrawerCollectionView> {
+    // convenience
     
-    weak var delegate: ButtonDrawerDelegate?
 }

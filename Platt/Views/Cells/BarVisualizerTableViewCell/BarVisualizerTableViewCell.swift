@@ -8,11 +8,16 @@
 
 import UIKit
 
+protocol BarVisualizerDelegate: class {
+    func clickedPlate(plate: Plate)
+}
+
 class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
     let scrollViewContainer = RoundedCornersView()
     let scrollView = UIScrollView()
     let barView = RoundedCornersView()
     let exaggScrollBar = RoundedCornersView()
+    weak var delegate: BarVisualizerDelegate?
     private var plates = [(plateView: SkinnyPlateView, plate: Plate)]()
     private var platesMap: [Plate: SkinnyPlateView] {
         var out = [Plate: SkinnyPlateView]()
@@ -25,10 +30,10 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
     private let xSpacing: CGFloat = 20
 
     @objc func clickedLoadedPlate(sender: UITapGestureRecognizer) {
-        let cellSuper = superview as! BarVisualizerTableViewCell
-//        cellSuper.collec
-        
-//        removePlates(plateViews: )
+        guard let plateView = sender.view as? SkinnyPlateView, let plateData = plates.filter({$0.plateView == plateView}).first else {
+            return
+        }
+        delegate?.clickedPlate(plate: plateData.plate)
     }
     
     private func slidePlate(plate: Plate, xPos: CGFloat) {
@@ -51,7 +56,7 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
     
     func loadPlates(plates: [Plate]) {
 //        if plates.isEmpty {
-            clearPlates()
+        clearPlates()
 //        }
         for plate in plates { //plates.filter({!platesMap.keys.contains($0)}) {
             
@@ -156,18 +161,21 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
 }
 
 
-class BarVisualizerTableViewCell: ModernView.ModernTableViewCell {
+class BarVisualizerTableViewCell: ModernView.ModernTableViewCell, BarVisualizerDelegate {
     let barVisualizerView = BarVisualizerView()
     
+    // MARK: - BarVisualizerDelegate methods
+    func clickedPlate(plate: Plate) {
+        PlateCalculator.activeInstance.remove(plate: plate)
+    }
     
     @objc func reflectSum(notification: Notification) {
-        
+        guard let plates = notification.userInfo?[CalculatorProperty.plates.rawValue] as? [Plate] else {
+            return
+        }
+        barVisualizerView.loadPlates(plates: plates)
     }
     
-    // MARK: - PlateCollectionTableViewCellDelegate methods
-    func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell) {
-        barVisualizerView.loadPlates(plates: [plate])
-    }
         
     override var intrinsicContentSize: CGSize {
         barVisualizerView.sizeToFit()
@@ -181,7 +189,8 @@ class BarVisualizerTableViewCell: ModernView.ModernTableViewCell {
     override func setup() {
         super.setup()
         coverSelfEntirely(with: barVisualizerView)
-        NotificationCenter.default.addObserver(self, selector: #selector(BarVisualizerTableViewCell.reflectSum(notification:)), name: .calculatorUpdatedSum, object: nil)
+        barVisualizerView.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(reflectSum(notification:)), name: .calculatorUpdatedSum, object: nil)
     }
     
     

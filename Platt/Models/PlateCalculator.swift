@@ -13,35 +13,64 @@ enum CalculatorConfigOption {
     case multiplier, measurementSystem
 }
 
+enum CalculatorProperty: String {
+    case sum, plates, configOptions, configOption
+}
+
 extension Notification.Name {
     static let calculatorUpdatedSum = Notification.Name("calculatorUpdatedSum")
     static let calculatorUpdatedConfigOption = Notification.Name("calculatorUpdatedConfigOption")
+    static let calculatorShouldUpdateConfigOption = Notification.Name("calculatorShouldUpdateConfigOption")
 }
 
 class PlateCalculator: NSObject {
     static let activeInstance: PlateCalculator = PlateCalculator()
+    private var configOptions = [CalculatorConfigOption: Any]()
     var plates = [Plate]() {
         didSet {
             updateListeners(name: .calculatorUpdatedSum)
         }
     }
-    private var configOptions = [CalculatorConfigOption: Any]()
-
-    func updateListeners(name: Notification.Name) {
-        var obj: Any!
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override init() {
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveConfigNotification(sender:)), name: .calculatorShouldUpdateConfigOption, object: nil)
+    }
+    
+    @objc func didReceiveConfigNotification(sender: Notification) {
+        guard let buttonType = sender.userInfo?[CalculatorProperty.configOption.rawValue] as? DrawerButtonType else {
+            return
+        }
+        
+        switch buttonType {
+        case .clear: clear()
+        case .toggleMultiplier: toggleMultiplier()
+        case .toggleMeasurementSystem: toggleMeasurementSystem()
+        }
+    }
+    
+    func updateListeners(name: Notification.Name, userInfo: [String: Any]? = nil) {
+        var userInfo = userInfo ?? [String: Any]()
         switch name {
         case .calculatorUpdatedSum:
-            obj = sum()
+            userInfo = [
+                CalculatorProperty.sum.rawValue: sum(),
+                CalculatorProperty.plates.rawValue: plates
+            ]
         case .calculatorUpdatedConfigOption:
-            obj = configOptions
+            break
         default: break
         }
-        NotificationCenter.default.post(name: name, object: nil, userInfo: ["obj": obj])
+        NotificationCenter.default.post(name: name, object: nil, userInfo: userInfo)
     }
     
     func setConfigOption(option: CalculatorConfigOption, val: Any) {
         configOptions[option] = val
-        updateListeners(name: .calculatorUpdatedConfigOption)
+        updateListeners(name: .calculatorUpdatedConfigOption, userInfo: [CalculatorProperty.configOption.rawValue: option])
     }
     
     func getConfigOption(option: CalculatorConfigOption) -> Any {
@@ -52,7 +81,9 @@ class PlateCalculator: NSObject {
     }
     
     func toggleMeasurementSystem() {
-        setConfigOption(option: .measurementSystem, val: [MeasurementSystem.english, .metric].filter({$0 != measurementSystem}).first!)
+        let otherSystem = [MeasurementSystem.english, .metric].filter({$0 != measurementSystem}).first!
+        setConfigOption(option: .measurementSystem, val: otherSystem)
+        updateListeners(name: .calculatorUpdatedSum)
     }
     
     var measurementSystem: MeasurementSystem {
@@ -65,6 +96,7 @@ class PlateCalculator: NSObject {
     
     func toggleMultiplier() {
         setConfigOption(option: .multiplier, val: [1, 2].filter({$0 != multiplier}).first!)
+        updateListeners(name: .calculatorUpdatedSum)
     }
     
     func clear() {
