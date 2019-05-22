@@ -13,6 +13,10 @@ enum CalculatorConfigOption {
     case multiplier, measurementSystem
 }
 
+enum CalculatorProperty: String {
+    case sum, plates, configOptions
+}
+
 extension Notification.Name {
     static let calculatorUpdatedSum = Notification.Name("calculatorUpdatedSum")
     static let calculatorUpdatedConfigOption = Notification.Name("calculatorUpdatedConfigOption")
@@ -28,15 +32,20 @@ class PlateCalculator: NSObject {
     private var configOptions = [CalculatorConfigOption: Any]()
 
     func updateListeners(name: Notification.Name) {
-        var obj: Any!
+        var userInfo = [String: Any]()
         switch name {
         case .calculatorUpdatedSum:
-            obj = sum()
+            userInfo = [
+                CalculatorProperty.sum.rawValue: sum(),
+                CalculatorProperty.plates.rawValue: plates
+            ]
         case .calculatorUpdatedConfigOption:
-            obj = configOptions
+            userInfo = [
+                CalculatorProperty.configOptions.rawValue: configOptions
+            ]
         default: break
         }
-        NotificationCenter.default.post(name: name, object: nil, userInfo: ["obj": obj])
+        NotificationCenter.default.post(name: name, object: nil, userInfo: userInfo)
     }
     
     func setConfigOption(option: CalculatorConfigOption, val: Any) {

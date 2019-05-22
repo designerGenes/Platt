@@ -12,7 +12,7 @@ class PlateSumTableViewCell: ModernView.ModernTableViewCell {
     private var lblSum = InsetLabel(textInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 32))
     
     @objc func reflectSum(notification: Notification) {
-        reflectSum(sum: notification.userInfo?["obj"] as? Double ?? 0)
+        reflectSum(sum: notification.userInfo?[CalculatorProperty.sum.rawValue] as? Double ?? 0)
     }
     
     func reflectSum(sum: Double) {
