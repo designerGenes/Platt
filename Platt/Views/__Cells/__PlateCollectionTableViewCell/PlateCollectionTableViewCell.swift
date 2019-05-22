@@ -24,6 +24,13 @@ class PlateCollectionDataSource: CollectionDataSource<PlateCollectionViewCell, P
     func loadPlates(plates: [Plate]) {
         data = plates
         collectionView?.reloadData()
+        if data.count > 3 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: self.data.count - 1), at: .right, animated: false)
+            }
+            
+        }
+        
     }
 }
 
