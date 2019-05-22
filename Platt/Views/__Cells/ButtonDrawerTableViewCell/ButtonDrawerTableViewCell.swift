@@ -53,52 +53,35 @@ class ButtonDrawerCollectionView: TypedCollectionView<ButtonDrawerCollectionView
 }
 
 class ButtonDrawerCollectionDataSource: CollectionDataSource<ButtonDrawerCollectionViewCell, DrawerButtonType> {
+    var calculator: PlateCalculator?
+    override var data: [DrawerButtonType] {
+        get { return [.clear, .toggleMultiplier, .toggleMeasurementSystem] }
+        set {}
+    }
+    
+    override func loadDataIntoCell(cell: ButtonDrawerCollectionViewCell, at indexPath: IndexPath) {
+        if let calculator = calculator {
+            cell.load(drawerButtonData: data[indexPath.section], calculator: calculator)
+        }
+    }
+    
+    // MARK: - CollectionViewSizingDelegate methods
+    override func widthForHeader(at section: Int) -> CGFloat {
+        return 10
+    }
+    
+    override func widthForFooter(at section: Int) -> CGFloat {
+        return 10
+    }
+    
+    override func widthForRow(at indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
     
 }
 
 // Table view cell containing ButtonDrawerCollectionView
-class ButtonDrawerTableViewCell: CollectionTableViewCell<ButtonDrawerCollectionViewCell, DrawerButtonType, ButtonDrawerCollectionDataSource, ButtonDrawerCollectionView>, CollectionViewSizingDelegate {
+class ButtonDrawerTableViewCell: CollectionTableViewCell<ButtonDrawerCollectionViewCell, DrawerButtonType, ButtonDrawerCollectionDataSource, ButtonDrawerCollectionView> {
     
-    // MARK: - CollectionViewSizingDelegate methods
-    func widthForHeader(at section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func widthForFooter(at section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func widthForRow(at indexPath: IndexPath) -> CGFloat {
-        return 40
-    }
-    
-    
-    var calculator: PlateCalculator?
     weak var delegate: ButtonDrawerDelegate?
-//    override var data: [DrawerButtonType] {
-//        get {
-//            return [
-//                .clear,
-//                .toggleMultiplier,
-//                .toggleMeasurementSystem
-//            ]
-//        }
-//
-//        set {}
-//    }
-    
-//    cel : [ModernView.ModernCollectionViewCell.Type] {
-//        return [ButtonDrawerCollectionViewCell.self]
-//    }
-    
-    
-    // MARK: - UICollectionViewDataSource, UICollectionViewDelegateFlowLayout methods
-    
- 
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: 24, height: 24)
-//    }
-
-
 }

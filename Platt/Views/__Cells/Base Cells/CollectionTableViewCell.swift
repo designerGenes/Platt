@@ -125,6 +125,10 @@ class CollectionDataSource<CellType: ModernView.ModernCollectionViewCell, DataTy
 // contains a collection view
 class CollectionTableViewCell<C, D, DS: CollectionDataSource<C, D>, CV: TypedCollectionView<C, D, DS>>: ModernView.ModernTableViewCell {
     
+    var dataSource: DS? {
+        return collectionView.dataSource as? DS
+    }
+    
     var collectionView: ModernView.ModernCollectionView!
 
     override func setup() {

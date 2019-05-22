@@ -23,7 +23,7 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorD
             PlateSumTableViewCell.self,
             PlateCollectionTableViewCell.self,
             BarVisualizerTableViewCell.self,
-            //            ButtonDrawerTableViewCell.self
+            ButtonDrawerTableViewCell.self
         ]
     }
     
@@ -81,7 +81,8 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, PlateCalculatorD
         case is BarVisualizerTableViewCell:
             break
         case is ButtonDrawerTableViewCell:
-            break
+            let buttonDrawerCell = cell as! ButtonDrawerTableViewCell
+            buttonDrawerCell.dataSource?.calculator = plateCalculator
         default:
             break
             

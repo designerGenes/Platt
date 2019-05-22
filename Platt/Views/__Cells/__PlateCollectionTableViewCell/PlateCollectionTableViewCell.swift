@@ -41,9 +41,6 @@ class PlateCollectionDataSource: CollectionDataSource<PlateCollectionViewCell, P
 // contains lateral collection of Plate cells
 class PlateCollectionTableViewCell: CollectionTableViewCell<PlateCollectionViewCell, Plate, PlateCollectionDataSource, TypedCollectionView<PlateCollectionViewCell, Plate, PlateCollectionDataSource>> {
     weak var delegate: PlateCollectionDelegate?
-    var dataSource: PlateCollectionDataSource? {
-        return collectionView.dataSource as? PlateCollectionDataSource
-    }
     
     override func setup() {
         super.setup()
@@ -51,6 +48,6 @@ class PlateCollectionTableViewCell: CollectionTableViewCell<PlateCollectionViewC
     }
     
     func didSelectPlate(plate: Plate, sender: PlateCollectionDataSource) {
-        
+
     }
 }

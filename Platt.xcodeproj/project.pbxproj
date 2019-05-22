@@ -194,8 +194,7 @@
 		FE3E6891226E4D69008C8CE5 /* __Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */,
-				FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */,
+				FEBFCB702295CAAF00573FAE /* __PlateCollectionTableViewCell */,
 				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
 				FEBFCB6D229596FE00573FAE /* ButtonDrawerTableViewCell */,
 				FE76A48622947341009E4B17 /* Base Cells */,
@@ -277,6 +276,15 @@
 				FEBFCB6E2295971500573FAE /* DrawerButtonView.swift */,
 			);
 			path = ButtonDrawerTableViewCell;
+			sourceTree = "<group>";
+		};
+		FEBFCB702295CAAF00573FAE /* __PlateCollectionTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */,
+				FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */,
+			);
+			path = __PlateCollectionTableViewCell;
 			sourceTree = "<group>";
 		};
 		FEC93272226FEEAB009BDD12 /* Fonts */ = {
