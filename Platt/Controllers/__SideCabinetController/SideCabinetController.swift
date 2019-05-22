@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum SideCabinetPosition {
+    case offscreen, partiallyOnscreen(percentOnscreen: CGFloat), fullscreen
+}
+
 enum SideCabinetOption: String {
     case about, close, contact
 }
@@ -18,23 +22,56 @@ extension Notification.Name {
     static let closedSideCabinetController = Notification.Name("closedSideCabinetController")
 }
 
-class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    public enum CabinetState {
-        case closed, open
+class PairedLabelContainer: ModernView {
+    let titleLabel = UILabel()
+    let bodyLabel = UILabel()
+    
+    func loadData(title: String?, body: String?) {
+        let shouldHide = title == nil && body == nil
+        layer.opacity = shouldHide ? 0 : 1
+        titleLabel.text = title
+        bodyLabel.text = body
     }
     
+    override func setup() {
+        for label in [titleLabel, bodyLabel] {
+            addSubview(label)
+            label.textAlignment = .center
+            label.adjustsFontSizeToFitWidth = true
+            label.textColor = .white
+        }
+        layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        titleLabel.font = UIFont.sfProTextBold(size: 40)
+        bodyLabel.font = UIFont.sfProTextRegular(size: 26)
+        bodyLabel.numberOfLines = 0
+    }
+    
+    override func addConstraints() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        bodyLabel.translatesAutoresizingMaskIntoConstraints = false
+        addConstraints([
+            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            bodyLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            bodyLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            bodyLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            ])
+    }
+}
+
+class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
+    var cabinetPosition: SideCabinetPosition = .offscreen
     private let tableView = UITableView()
     private var data = [SideCabinetOption]()
     public weak var delegate: HostsSideCabinet?
-    public var state: CabinetState = .closed
     private var lastSwipeX: CGFloat = 0
     private var panGestureRecognizer: UIPanGestureRecognizer?
+    let pairedLabelContainer = PairedLabelContainer()
     
     private var fakeBgroundView = UIView()
-    
-    func addSubscriber(sub: NSObject, selector: Selector) {
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +81,14 @@ class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewD
         
         view.layoutMargins = UIEdgeInsets(top: 32, left: 16, bottom: 0, right: 0)
         
-        data = [
-            .about, .contact, .close
-        ]
+        data = [.about, .contact, .close]
         
         view.addSubview(fakeBgroundView)
         view.addSubview(tableView)
+        view.addSubview(pairedLabelContainer)
+        pairedLabelContainer.translatesAutoresizingMaskIntoConstraints = false
+        pairedLabelContainer.alpha = 0
+        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -70,7 +109,10 @@ class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewD
             tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.5),
+            pairedLabelContainer.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            pairedLabelContainer.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            pairedLabelContainer.widthAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.widthAnchor),
             ])
     }
     
@@ -110,15 +152,13 @@ class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc private func didSwipe(sender: UIPanGestureRecognizer) {
-        
-        
         switch sender.state {
         case .began:
             lastSwipeX = sender.location(in: view).x
         case .changed:
             let newLocation = sender.location(in: view).x
-            if abs(lastSwipeX - newLocation) > ((view.frame.width - lastSwipeX ) / 2) {
-                delegate?.setCabinetOpen(shouldOpen: newLocation > lastSwipeX)
+            if abs(lastSwipeX - newLocation) > ((view.frame.width - lastSwipeX ) / 2) && newLocation > lastSwipeX {
+                delegate?.animateCabinetPosition(position: .offscreen)
                 view.removeGestureRecognizer(panGestureRecognizer!)
             }
         case .ended: break

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CalculatorTableDataSource: StaticListTableViewDataSource, ButtonDrawerDelegate  {
+class CalculatorTableDataSource: StaticListTableViewDataSource {
     
     let plateCalculator = PlateCalculator.activeInstance // calls all the shots after init
     
@@ -20,18 +20,6 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, ButtonDrawerDele
             BarVisualizerTableViewCell.self,
             ButtonDrawerTableViewCell.self
         ]
-    }
-    
-    // MARK: - ButtonDrawerDelegate methods
-    func didTapDrawerButton(buttonType: DrawerButtonType) {
-        switch buttonType {
-        case .clear:
-            plateCalculator.clear()
-        case .toggleMultiplier:
-            plateCalculator.toggleMultiplier()
-        case .toggleMeasurementSystem:
-            plateCalculator.toggleMeasurementSystem()
-        }
     }
     
     // load initial data
@@ -48,9 +36,8 @@ class CalculatorTableDataSource: StaticListTableViewDataSource, ButtonDrawerDele
             let barVisualizerCell = cell as! BarVisualizerTableViewCell
             barVisualizerCell.barVisualizerView.loadPlates(plates: plateCalculator.plates)
         case is ButtonDrawerTableViewCell:
-            let buttonDrawerCell = cell as! ButtonDrawerTableViewCell
-            buttonDrawerCell.dataSource?.calculator = plateCalculator
-            buttonDrawerCell.delegate = self
+//            let buttonDrawerCell = cell as! ButtonDrawerTableViewCell
+            break
         default:
             break
         }

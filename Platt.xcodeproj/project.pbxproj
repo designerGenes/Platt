@@ -38,6 +38,7 @@
 		FE76A48B2294960A009E4B17 /* StaticListTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE76A48A2294960A009E4B17 /* StaticListTableViewDataSource.swift */; };
 		FEBFCB6F2295971500573FAE /* DrawerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB6E2295971500573FAE /* DrawerButtonView.swift */; };
 		FEBFCB722295CD3100573FAE /* CollectionViewWithSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB712295CD3100573FAE /* CollectionViewWithSize.swift */; };
+		FEBFCB782296094F00573FAE /* SF-Pro-Text-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEBFCB772296094E00573FAE /* SF-Pro-Text-Regular.ttf */; };
 		FEC3A057226F8D7600111B59 /* UIImage+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */; };
 		FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A058226F8E3A00111B59 /* InsetLabel.swift */; };
 		FEC3A05B226F937000111B59 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A05A226F937000111B59 /* RoundedCornersView.swift */; };
@@ -91,6 +92,7 @@
 		FE76A48A2294960A009E4B17 /* StaticListTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticListTableViewDataSource.swift; sourceTree = "<group>"; };
 		FEBFCB6E2295971500573FAE /* DrawerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerButtonView.swift; sourceTree = "<group>"; };
 		FEBFCB712295CD3100573FAE /* CollectionViewWithSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewWithSize.swift; sourceTree = "<group>"; };
+		FEBFCB772296094E00573FAE /* SF-Pro-Text-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.ttf"; sourceTree = "<group>"; };
 		FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Asset.swift"; sourceTree = "<group>"; };
 		FEC3A058226F8E3A00111B59 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		FEC3A05A226F937000111B59 /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
@@ -162,8 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				FE3E6892226E4D80008C8CE5 /* __CalculatorViewController */,
-				FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */,
-				FE3E688D226E4D3C008C8CE5 /* SideCabinetController.swift */,
+				FEBFCB732295EF1700573FAE /* __SpineViewController */,
+				FEBFCB742295EF7100573FAE /* __SideCabinetController */,
 				FE3E68AC226E5431008C8CE5 /* BaseViewController */,
 			);
 			path = Controllers;
@@ -183,28 +185,28 @@
 		FE3E6890226E4D4F008C8CE5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FE3E6891226E4D69008C8CE5 /* __Cells */,
+				FE3E6891226E4D69008C8CE5 /* Cells */,
 				FE3E68AD226E5762008C8CE5 /* PlateView.swift */,
 				FEC3A058226F8E3A00111B59 /* InsetLabel.swift */,
 				FEC3A05A226F937000111B59 /* RoundedCornersView.swift */,
 				FE49F7D822848E4A0007D7A8 /* ModernView.swift */,
-				FE76A48922948EB0009E4B17 /* __StaticListTableView */,
+				FE76A48922948EB0009E4B17 /* StaticListTableView */,
 				FEBFCB712295CD3100573FAE /* CollectionViewWithSize.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FE3E6891226E4D69008C8CE5 /* __Cells */ = {
+		FE3E6891226E4D69008C8CE5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				FEBFCB702295CAAF00573FAE /* __PlateCollectionTableViewCell */,
-				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
+				FEBFCB702295CAAF00573FAE /* PlateCollectionTableViewCell */,
+				FEBFCB792296198200573FAE /* PlateSumTableViewCell */,
 				FEBFCB6D229596FE00573FAE /* ButtonDrawerTableViewCell */,
 				FE76A48622947341009E4B17 /* Base Cells */,
 				FE49F7A4228353B80007D7A8 /* BarVisualizerTableViewCell */,
 				FEFBEE362289EE5300C38737 /* SideCabinetOptionCell.swift */,
 			);
-			path = __Cells;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		FE3E6892226E4D80008C8CE5 /* __CalculatorViewController */ = {
@@ -263,13 +265,13 @@
 			path = "Base Cells";
 			sourceTree = "<group>";
 		};
-		FE76A48922948EB0009E4B17 /* __StaticListTableView */ = {
+		FE76A48922948EB0009E4B17 /* StaticListTableView */ = {
 			isa = PBXGroup;
 			children = (
 				FE76A487229480E7009E4B17 /* StaticListTableView.swift */,
 				FE76A48A2294960A009E4B17 /* StaticListTableViewDataSource.swift */,
 			);
-			path = __StaticListTableView;
+			path = StaticListTableView;
 			sourceTree = "<group>";
 		};
 		FEBFCB6D229596FE00573FAE /* ButtonDrawerTableViewCell */ = {
@@ -281,18 +283,43 @@
 			path = ButtonDrawerTableViewCell;
 			sourceTree = "<group>";
 		};
-		FEBFCB702295CAAF00573FAE /* __PlateCollectionTableViewCell */ = {
+		FEBFCB702295CAAF00573FAE /* PlateCollectionTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				FE3E6893226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift */,
 				FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */,
 			);
-			path = __PlateCollectionTableViewCell;
+			path = PlateCollectionTableViewCell;
+			sourceTree = "<group>";
+		};
+		FEBFCB732295EF1700573FAE /* __SpineViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E688B226E4D28008C8CE5 /* SpineViewController.swift */,
+			);
+			path = __SpineViewController;
+			sourceTree = "<group>";
+		};
+		FEBFCB742295EF7100573FAE /* __SideCabinetController */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E688D226E4D3C008C8CE5 /* SideCabinetController.swift */,
+			);
+			path = __SideCabinetController;
+			sourceTree = "<group>";
+		};
+		FEBFCB792296198200573FAE /* PlateSumTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
+			);
+			path = PlateSumTableViewCell;
 			sourceTree = "<group>";
 		};
 		FEC93272226FEEAB009BDD12 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				FEBFCB772296094E00573FAE /* SF-Pro-Text-Regular.ttf */,
 				FE15AC982290E38B00559D1A /* SF-Pro-Text-Bold.ttf */,
 			);
 			path = Fonts;
@@ -382,6 +409,7 @@
 				FE15AC992290E38B00559D1A /* SF-Pro-Text-Bold.ttf in Resources */,
 				FE3E6882226E4C99008C8CE5 /* LaunchScreen.storyboard in Resources */,
 				FE3E687F226E4C99008C8CE5 /* Assets.xcassets in Resources */,
+				FEBFCB782296094F00573FAE /* SF-Pro-Text-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

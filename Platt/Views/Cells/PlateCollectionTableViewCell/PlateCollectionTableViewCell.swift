@@ -24,6 +24,11 @@ class PlateCollectionDataSource: CollectionDataSource<PlateCollectionViewCell, P
     func loadPlates(plates: [Plate]) {
         data = plates
         collectionView?.reloadData()
+        if data.count > 3 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
+                self.collectionView?.scrollToItem(at: IndexPath(row: 0, section: self.data.count - 1), at: .right, animated: false)
+            }
+        }
     }
 }
 
@@ -33,7 +38,6 @@ class PlateCollectionView: TypedCollectionView<PlateCollectionViewCell, Plate, P
 
 // contains lateral collection of Plate cells
 class PlateCollectionTableViewCell: CollectionTableViewCell<PlateCollectionViewCell, Plate, PlateCollectionDataSource, PlateCollectionView> {
-    
     
     override func setup() {
         super.setup()
