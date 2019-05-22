@@ -21,14 +21,12 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
         }
         return out
     }
-    
+
     private let xSpacing: CGFloat = 20
 
     @objc func clickedLoadedPlate(sender: UITapGestureRecognizer) {
         let cellSuper = superview as! BarVisualizerTableViewCell
-        let senderPlateView = sender.view as! SkinnyPlateView
-        let senderPlate = plates.filter({$0.plateView == senderPlateView}).first!.plate
-        cellSuper.delegate?.didSelectPlate(plate: senderPlate, sender: cellSuper)
+//        cellSuper.collec
         
 //        removePlates(plateViews: )
     }
@@ -114,6 +112,10 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
         scrollView.setContentOffset(CGPoint(x: computedX, y: scrollView.contentOffset.y), animated: false)
     }
     
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: size.width, height: 120)
+    }
+    
     override func setup() {
         addSubview(scrollViewContainer)
         scrollViewContainer.backgroundColor = .lighterBgroundGray()
@@ -127,7 +129,6 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         scrollViewContainer.addSubview(scrollView)
         scrollView.addSubview(barView)
-        
     }
     
     override func addConstraints() {
@@ -142,9 +143,9 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
             scrollView.widthAnchor.constraint(equalTo: scrollViewContainer.widthAnchor),
             scrollView.heightAnchor.constraint(equalTo: barView.heightAnchor),
             ])
-//
-//        barWidthConstraint = barView.widthAnchor.constraint(equalToConstant: 50)
-//        barWidthConstraint?.isActive = true
+        //
+        //        barWidthConstraint = barView.widthAnchor.constraint(equalToConstant: 50)
+        //        barWidthConstraint?.isActive = true
     }
     
     // MARK: - UIScrollViewDelegate methods
@@ -155,18 +156,32 @@ class BarVisualizerView: RoundedCornersView, UIScrollViewDelegate {
 }
 
 
-class BarVisualizerTableViewCell: CalculatorTableCell {
-    var barVisualizeView = BarVisualizerView()
-    weak var delegate: PlateCollectionDelegate?
+class BarVisualizerTableViewCell: ModernView.ModernTableViewCell {
+    let barVisualizerView = BarVisualizerView()
+    
+    
+    @objc func reflectSum(notification: Notification) {
+        
+    }
     
     // MARK: - PlateCollectionTableViewCellDelegate methods
     func didSelectPlate(plate: Plate, in cell: PlateCollectionTableViewCell) {
-        barVisualizeView.loadPlates(plates: [plate])
+        barVisualizerView.loadPlates(plates: [plate])
+    }
+        
+    override var intrinsicContentSize: CGSize {
+        barVisualizerView.sizeToFit()
+        return barVisualizerView.frame.size
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .calculatorUpdatedSum, object: nil)
     }
     
     override func setup() {
         super.setup()
-        coverSelfEntirely(with: barVisualizeView)
+        coverSelfEntirely(with: barVisualizerView)
+        NotificationCenter.default.addObserver(self, selector: #selector(BarVisualizerTableViewCell.reflectSum(notification:)), name: .calculatorUpdatedSum, object: nil)
     }
     
     

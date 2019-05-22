@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RoundedCornersView: DJView {
+class RoundedCornersView: ModernView {
     var cornerRadius: CGFloat = 0 {
         didSet {
             layoutSubviews()

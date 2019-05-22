@@ -8,20 +8,19 @@
 
 import UIKit
 
-class PlateCollectionViewCell: UICollectionViewCell {
+class PlateCollectionViewCell: ModernView.ModernCollectionViewCell {
     private var plateView = PlateView()
     private var plateWidthConstraint: NSLayoutConstraint?
     
     func loadPlate(plate: Plate, position: Int) {
         plateView.plate = plate
         
-        let percentSize = min(1, Double(position) / Double(PlatesLibrary.defaultPlates.count))
+        let percentSize = min(1, Double(position) / Double(PlatesLibrary.defaultPlates(measurementSystem: .english).count))
         let inset = ((40 * CGFloat(1 - percentSize)) / 2)
         contentView.layoutMargins = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
     
-    
-    func setup() {
+    override func setup() {
         contentView.addSubview(plateView)
         contentView.backgroundColor = .clear
         plateView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,16 +34,6 @@ class PlateCollectionViewCell: UICollectionViewCell {
         
         plateWidthConstraint = contentView.widthAnchor.constraint(equalToConstant: 100)
         plateWidthConstraint?.isActive = true
-        
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
+
 }
