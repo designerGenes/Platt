@@ -48,7 +48,7 @@ class SideCabinetOptionCell: ModernView.ModernTableViewCell {
         backgroundColor = .clear
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.sfProDisplayBold(size: 32)
+        titleLabel.font = UIFont.sfProTextBold(size: 32)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .right
         titleLabel.transform = CGAffineTransform(translationX: -24, y: 0)

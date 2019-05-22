@@ -22,6 +22,45 @@ extension Notification.Name {
     static let closedSideCabinetController = Notification.Name("closedSideCabinetController")
 }
 
+class PairedLabelContainer: ModernView {
+    let titleLabel = UILabel()
+    let bodyLabel = UILabel()
+    
+    func loadData(title: String?, body: String?) {
+        let shouldHide = title == nil && body == nil
+        layer.opacity = shouldHide ? 0 : 1
+        titleLabel.text = title
+        bodyLabel.text = body
+    }
+    
+    override func setup() {
+        for label in [titleLabel, bodyLabel] {
+            addSubview(label)
+            label.textAlignment = .center
+            label.adjustsFontSizeToFitWidth = true
+            label.textColor = .white
+        }
+        layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        titleLabel.font = UIFont.sfProTextBold(size: 40)
+        bodyLabel.font = UIFont.sfProTextRegular(size: 26)
+        bodyLabel.numberOfLines = 0
+    }
+    
+    override func addConstraints() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        bodyLabel.translatesAutoresizingMaskIntoConstraints = false
+        addConstraints([
+            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
+            bodyLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            bodyLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            bodyLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            ])
+    }
+}
+
 class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var cabinetPosition: SideCabinetPosition = .offscreen
@@ -30,6 +69,7 @@ class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewD
     public weak var delegate: HostsSideCabinet?
     private var lastSwipeX: CGFloat = 0
     private var panGestureRecognizer: UIPanGestureRecognizer?
+    let pairedLabelContainer = PairedLabelContainer()
     
     private var fakeBgroundView = UIView()
     
@@ -45,6 +85,10 @@ class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewD
         
         view.addSubview(fakeBgroundView)
         view.addSubview(tableView)
+        view.addSubview(pairedLabelContainer)
+        pairedLabelContainer.translatesAutoresizingMaskIntoConstraints = false
+        pairedLabelContainer.alpha = 0
+        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -65,7 +109,10 @@ class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewD
             tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            tableView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.5),
+            pairedLabelContainer.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+            pairedLabelContainer.topAnchor.constraint(equalTo: tableView.bottomAnchor),
+            pairedLabelContainer.widthAnchor.constraint(lessThanOrEqualTo: view.layoutMarginsGuide.widthAnchor),
             ])
     }
     

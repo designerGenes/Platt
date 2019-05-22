@@ -29,10 +29,13 @@ class SpineViewController: BaseViewController, HostsSideCabinet {
         switch option {
         case .close:
             animateCabinetPosition(position: .offscreen)
+            sideCabinetController?.pairedLabelContainer.loadData(title: nil, body: nil)
         case .about:
             animateCabinetPosition(position: .fullscreen)
+            sideCabinetController?.pairedLabelContainer.loadData(title: "about", body: "Platt is an easy way to calculate how much weight you lift")
         case .contact:
             animateCabinetPosition(position: .fullscreen)
+            sideCabinetController?.pairedLabelContainer.loadData(title: "contact", body: "Contact Designer Jeans at \njnationmint@gmail.com")
         }
     }
     
