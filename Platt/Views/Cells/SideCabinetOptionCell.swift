@@ -15,12 +15,9 @@ class SideCabinetOptionCell: ModernView.ModernTableViewCell {
     private var optionData: SideCabinetOption?
     private var position: Int = 0
     
-    
-    
     public func loadData(optionData: SideCabinetOption, position: Int) {
         self.optionData = optionData
         titleLabel.text = optionData.rawValue
-        
         self.position = position
     }
     
@@ -32,8 +29,6 @@ class SideCabinetOptionCell: ModernView.ModernTableViewCell {
     @objc func changedSideCabinetOpen(sender: Notification) {
         switch sender.name {
         case .openingSideCabinetController:
-            
-            
             UIView.animate(withDuration: 0.24 + (Double(position) * 0.12), delay: 0, options: [.curveEaseInOut], animations: {
                 self.titleLabel.transform = .identity
             }, completion: nil)

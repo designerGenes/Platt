@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum SideCabinetPosition {
+    case offscreen, partiallyOnscreen(percentOnscreen: CGFloat), fullscreen
+}
+
 enum SideCabinetOption: String {
     case about, close, contact
 }
@@ -19,22 +23,15 @@ extension Notification.Name {
 }
 
 class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    public enum CabinetState {
-        case closed, open
-    }
-    
+
+    var cabinetPosition: SideCabinetPosition = .offscreen
     private let tableView = UITableView()
     private var data = [SideCabinetOption]()
     public weak var delegate: HostsSideCabinet?
-    public var state: CabinetState = .closed
     private var lastSwipeX: CGFloat = 0
     private var panGestureRecognizer: UIPanGestureRecognizer?
     
     private var fakeBgroundView = UIView()
-    
-    func addSubscriber(sub: NSObject, selector: Selector) {
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +41,7 @@ class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewD
         
         view.layoutMargins = UIEdgeInsets(top: 32, left: 16, bottom: 0, right: 0)
         
-        data = [
-            .about, .contact, .close
-        ]
+        data = [.about, .contact, .close]
         
         view.addSubview(fakeBgroundView)
         view.addSubview(tableView)
@@ -110,15 +105,13 @@ class SideCabinetController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc private func didSwipe(sender: UIPanGestureRecognizer) {
-        
-        
         switch sender.state {
         case .began:
             lastSwipeX = sender.location(in: view).x
         case .changed:
             let newLocation = sender.location(in: view).x
-            if abs(lastSwipeX - newLocation) > ((view.frame.width - lastSwipeX ) / 2) {
-                delegate?.setCabinetOpen(shouldOpen: newLocation > lastSwipeX)
+            if abs(lastSwipeX - newLocation) > ((view.frame.width - lastSwipeX ) / 2) && newLocation > lastSwipeX {
+                delegate?.animateCabinetPosition(position: .offscreen)
                 view.removeGestureRecognizer(panGestureRecognizer!)
             }
         case .ended: break

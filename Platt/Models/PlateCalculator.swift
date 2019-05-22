@@ -81,7 +81,9 @@ class PlateCalculator: NSObject {
     }
     
     func toggleMeasurementSystem() {
-        setConfigOption(option: .measurementSystem, val: [MeasurementSystem.english, .metric].filter({$0 != measurementSystem}).first!)
+        let otherSystem = [MeasurementSystem.english, .metric].filter({$0 != measurementSystem}).first!
+        setConfigOption(option: .measurementSystem, val: otherSystem)
+        updateListeners(name: .calculatorUpdatedSum)
     }
     
     var measurementSystem: MeasurementSystem {
