@@ -200,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				FEBFCB702295CAAF00573FAE /* PlateCollectionTableViewCell */,
-				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
+				FEBFCB792296198200573FAE /* PlateSumTableViewCell */,
 				FEBFCB6D229596FE00573FAE /* ButtonDrawerTableViewCell */,
 				FE76A48622947341009E4B17 /* Base Cells */,
 				FE49F7A4228353B80007D7A8 /* BarVisualizerTableViewCell */,
@@ -306,6 +306,14 @@
 				FE3E688D226E4D3C008C8CE5 /* SideCabinetController.swift */,
 			);
 			path = __SideCabinetController;
+			sourceTree = "<group>";
+		};
+		FEBFCB792296198200573FAE /* PlateSumTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
+			);
+			path = PlateSumTableViewCell;
 			sourceTree = "<group>";
 		};
 		FEC93272226FEEAB009BDD12 /* Fonts */ = {
