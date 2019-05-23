@@ -182,9 +182,6 @@ class BarVisualizerTableViewCell: ModernView.ModernTableViewCell, BarVisualizerD
         return barVisualizerView.frame.size
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .calculatorUpdatedSum, object: nil)
-    }
     
     override func setup() {
         super.setup()

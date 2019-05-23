@@ -21,11 +21,6 @@ class SideCabinetOptionCell: ModernView.ModernTableViewCell {
         self.position = position
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .openedSideCabinetController, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .closedSideCabinetController, object: nil)
-    }
-    
     @objc func changedSideCabinetOpen(sender: Notification) {
         switch sender.name {
         case .openingSideCabinetController:

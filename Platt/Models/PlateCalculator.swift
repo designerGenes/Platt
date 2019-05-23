@@ -32,10 +32,6 @@ class PlateCalculator: NSObject {
         }
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     override init() {
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(didReceiveConfigNotification(sender:)), name: .calculatorShouldUpdateConfigOption, object: nil)
