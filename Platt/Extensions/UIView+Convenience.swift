@@ -29,8 +29,8 @@ public extension UIView {
 	}
     
     func takeScreenShot() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0);
-        self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0);
+        drawHierarchy(in: bounds, afterScreenUpdates: false)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image

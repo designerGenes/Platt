@@ -14,18 +14,47 @@ protocol HostsSideCabinet: class {
     func tappedOption(optionValue: String) // hack to get around enum
 }
 
-class SpineViewController: BaseViewController, HostsSideCabinet {    
-    private var centerInnerViewController: UIViewController?
-    private var centerNavigationController: UINavigationController?
+class HazeGradient: NSObject {
+    var gradient: CGGradient!
+    
+    init(primaryColor: CGColor) {
+        super.init()
+    }
+}
+
+class HazeGradientLayer: CAGradientLayer {
+    var gradient: CGGradient? = nil
+    var primaryColor: UIColor = .lightPurple() {
+        didSet {
+            rebuildGradient()
+        }
+    }
+    
+    var endOpacity: (start: CGFloat, end: CGFloat) = (0, 0) {
+        didSet {
+            rebuildGradient()
+        }
+    }
+    
+    func rebuildGradient() {
+//        let la = CAGradientLayer()
+//        la.gra
+    }
+}
+
+class SpineViewController<T: ModernViewController>: ModernViewController, HostsSideCabinet {
+    private var centerInnerViewController: ModernViewController?
+    private var centerNavigationController: ModernNavigationController?
     private var sideCabinetController: SideCabinetController?
-    private var hazeView: UIControl?
-    private var snapShotView: UIImageView?
-    static let optionsPosition = SideCabinetPosition.partiallyOnscreen(percentOnscreen: 0.4)
+    private var hazeView = UIControl()
+    private var snapShotView = UIImageView()
+    private let showSideCabinetOptionsPosition = SideCabinetPosition.partiallyOnscreen(percentOnscreen: 0.4)
     
     func tappedOption(optionValue: String) {
         guard let option = SideCabinetOption(rawValue: optionValue) else {
             return
         }
+        
         switch option {
         case .close:
             animateCabinetPosition(position: .offscreen)
@@ -52,27 +81,43 @@ class SpineViewController: BaseViewController, HostsSideCabinet {
         sideCabinetController.view.frame = CGRect(origin: CGPoint(x: -UIScreen.main.bounds.width, y: 0), size: UIScreen.main.bounds.size)
     }
     
-    
-    
-    convenience init<T: UIViewController>(centerVCClass: T.Type) {
-        self.init()
+    override func setup() {
         centerInnerViewController = T()
-        centerNavigationController = UINavigationController(rootViewController: centerInnerViewController!)
+        centerNavigationController = ModernNavigationController(rootViewController: centerInnerViewController!)
+        view.backgroundColor = UIColor.spotifyGray().lightened(by: 15)
+        snapShotView.layer.drawsAsynchronously = true
+        
         let barButtonItem = UIBarButtonItem(image: UIImage.fromAsset(.menu), style: .plain, target: self, action: #selector(openCabinet(sender:)))
-        centerInnerViewController?.navigationItem.rightBarButtonItem = barButtonItem
         barButtonItem.tintColor = .spotifyMud()
+        centerInnerViewController?.navigationItem.rightBarButtonItem = barButtonItem
+        
         addChild(centerNavigationController!)
-        view.coverSelfEntirely(with: centerNavigationController!.view, obeyMargins: false)
+        
         centerNavigationController?.didMove(toParent: self)
+        
+        
+        hazeView.backgroundColor = UIColor.lightPurple()
+        hazeView.alpha = 0
+        hazeView.layer.drawsAsynchronously = true
+        hazeView.addTarget(self, action: #selector(tappedHaze(sender:)), for: .touchUpInside)
     }
     
+    override func addConstraints() {
+        view.coverSelfEntirely(with: hazeView)  // make sure it stays on top
+        view.coverSelfEntirely(with: centerNavigationController!.view, obeyMargins: false)
+        
+    }
+    
+    
     @objc private func openCabinet(sender: UIBarButtonItem) {
-        animateCabinetPosition(position: SpineViewController.optionsPosition)
+        animateCabinetPosition(position: showSideCabinetOptionsPosition)
     }
     
 
     override func viewDidLayoutSubviews() {
-        hazeView?.frame = UIScreen.main.bounds
+        if let screen = hazeView.superview {
+            hazeView.frame = screen.bounds
+        }
     }
     
     // MARK: - HostsSideCabinet methods
@@ -93,14 +138,17 @@ class SpineViewController: BaseViewController, HostsSideCabinet {
     
     func animateCabinetPosition(position: SideCabinetPosition) {
         var shouldOpen: Bool
+        var goingToExtremePosition: Bool = false
         let cabinetViewOffset: CGFloat
         switch position {
         case .offscreen:
             cabinetViewOffset = 0
             shouldOpen = false
+            goingToExtremePosition = true
         case .fullscreen:
             cabinetViewOffset = 1
             shouldOpen = true
+            goingToExtremePosition = true
         case .partiallyOnscreen(let percentOnscreen):
             cabinetViewOffset = percentOnscreen
             addCabinetVC()
@@ -111,49 +159,59 @@ class SpineViewController: BaseViewController, HostsSideCabinet {
             return
         }
         
-        let nName: Notification.Name = shouldOpen ? .openedSideCabinetController : .closedSideCabinetController
-        
+        let finishedProcessName: Notification.Name = shouldOpen ? .openedSideCabinetController : .closedSideCabinetController
+        let midProcessName: Notification.Name = shouldOpen ? .openingSideCabinetController : .closingSideCabinetController
         
         let centerViewOffset: CGFloat = shouldOpen ? cabinetViewOffset * 1.24 : 0
         let zOffset: CGFloat = shouldOpen ? 0.8 : 1
 
-        // animate haze
-        var centerCoverView: UIView?
-        if shouldOpen && hazeView == nil {
-            hazeView = UIControl()
-            view.coverSelfEntirely(with: hazeView!)  // make sure it stays on top
-            hazeView?.backgroundColor = UIColor.lightPurple()
-            hazeView?.addTarget(self, action: #selector(tappedHaze(sender:)), for: .touchUpInside)
-            hazeView?.alpha = 0
+        if shouldOpen && !goingToExtremePosition {  // if opening partially
+            snapShotView.image = centerView.takeScreenShot()
+            view.bringSubviewToFront(hazeView)
             view.bringSubviewToFront(sideCabinetView)
-            let snapShotView = UIImageView(image: centerView.takeScreenShot())
-            self.snapShotView = snapShotView
             
-            centerCoverView = UIView()
-            centerCoverView!.backgroundColor = centerView.backgroundColor
             centerView.coverSelfEntirely(with: snapShotView, obeyMargins: false)
         }
         
-        NotificationCenter.default.post(name: .openingSideCabinetController, object: nil, userInfo: ["cabinetViewOffset": cabinetViewOffset])
-        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-            self.hazeView?.alpha = shouldOpen ? 0.4 : 0
         
+        
+        NotificationCenter.default.post(name: midProcessName, object: nil, userInfo: ["cabinetViewOffset": cabinetViewOffset])
+        
+        let animations: () -> Void = {
             centerView.transform = CGAffineTransform.identity.scaledBy(x: zOffset, y: zOffset).translatedBy(x: UIScreen.main.bounds.width * centerViewOffset, y: 0)
             sideCabinetView.transform = CGAffineTransform.identity.translatedBy(x: UIScreen.main.bounds.width * cabinetViewOffset, y: 0)
-            
-        }, completion: { (done) in
-            NotificationCenter.default.post(name: nName, object: nil)
+            self.hazeView.alpha = shouldOpen ? 0.4 : 0
+        }
+        
+        let completion: (Bool) -> Void = { done in
+            NotificationCenter.default.post(name: finishedProcessName, object: nil)
             sideCabinetController.cabinetPosition = position
             if done == true && shouldOpen == false {
-                self.hazeView?.removeFromSuperview()
-                self.hazeView = nil
-//                self.view.subviews.filter({$0 === self.hazeView}).first?.removeFromSuperview()
+                //                self.view.subviews.filter({$0 === self.hazeView}).first?.removeFromSuperview()
+                
                 sideCabinetController.removeFromParent()
                 self.sideCabinetController = nil
-                self.snapShotView?.removeFromSuperview()
-                self.snapShotView = nil
+                self.snapShotView.image = nil
             }
-        })
+        }
+        
+        if shouldOpen {
+            UIView.animate(withDuration: 0.35,
+                           delay: 0,
+                           usingSpringWithDamping: 0.85,
+                           initialSpringVelocity: 1,
+                           options: [UIView.AnimationOptions.curveEaseOut],
+                           animations: animations,
+                           completion: completion)
+        } else {
+            UIView.animate(withDuration: 0.35,
+                           delay: 0,
+                           options: [.curveEaseOut],
+                           animations: animations,
+                           completion: completion)
+        }
+        
+        
     }
 
 }

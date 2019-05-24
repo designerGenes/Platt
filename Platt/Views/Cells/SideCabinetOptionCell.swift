@@ -31,10 +31,11 @@ class SideCabinetOptionCell: ModernView.ModernTableViewCell {
         }
     }
     
-    private func buildCell() {
+    override func setup() {
         NotificationCenter.default.addObserver(self, selector: #selector(changedSideCabinetOpen), name: .openingSideCabinetController, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changedSideCabinetOpen), name: .openedSideCabinetController, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(changedSideCabinetOpen), name: .closedSideCabinetController, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(changedSideCabinetOpen), name: .closingSideCabinetController, object: nil)
         
         
         selectionStyle = .none
@@ -46,22 +47,15 @@ class SideCabinetOptionCell: ModernView.ModernTableViewCell {
         titleLabel.font = UIFont.sfProTextBold(size: 32)
         titleLabel.textColor = .white
         titleLabel.textAlignment = .right
-        titleLabel.transform = CGAffineTransform(translationX: -24, y: 0)
-        
+//        titleLabel.transform = CGAffineTransform(translationX: -24, y: 0)
+    
+    }
+    
+    override func addConstraints() {
         contentView.addConstraints([
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             ])
-    }
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        buildCell()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        buildCell()
     }
     
 }

@@ -8,14 +8,71 @@
 
 import UIKit
 
-@objc protocol AssemblesViewCleanly {
+@objc public protocol ModernInitialized {
     @objc func setup()
-    @objc func addConstraints()
+    @objc optional func addConstraints()
 }
 
-extension UIView: AssemblesViewCleanly {
-    func setup() { }
-    func addConstraints() { }
+extension UIView: ModernInitialized {
+    public func setup() {
+        //
+    }
+    
+    public func addConstraints() {
+        //
+    }
+}
+
+class ModernViewController: UIViewController, ModernInitialized {
+    func addConstraints() {
+        
+    }
+    
+    func setup() {
+        // happens before view loads
+    }
+    
+    func onLoadSetup() {
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        onLoadSetup()
+        addConstraints()
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    class ModernNavigationController: UINavigationController, ModernInitialized {
+        
+        func setup() {
+            //
+        }
+        
+        override init(rootViewController: UIViewController) {
+            super.init(rootViewController: rootViewController)
+            setup()
+        }
+        
+        override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+            super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+            setup()
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+            setup()
+        }
+    }
 }
 
 class ModernView: UIView {

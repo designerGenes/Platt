@@ -20,13 +20,18 @@ class PlateCollectionViewCell: ModernView.ModernCollectionViewCell {
         contentView.layoutMargins = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
     }
     
-    @objc private func longPressedPlate(sender: UIGestureRecognizer) {
-        NotificationCenter.default.post(name: .submittingValueForEditing, object: nil, userInfo: [DualStateInsetTextView.UserInfoKey.localValue: plateView.plate!.unitWeight])
+    @objc private func longPressedPlate(sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            NotificationCenter.default.post(name: .submittingValueForEditing, object: nil, userInfo: [DualStateInsetTextView.UserInfoKey.localValue: plateView.plate!.unitWeight])
+        }
+        
     }
     
     override func setup() {
         contentView.addSubview(plateView)
-        plateView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressedPlate(sender:))))
+        let lPGesture = UILongPressGestureRecognizer(target: self, action: #selector(longPressedPlate(sender:)))
+        
+        plateView.addGestureRecognizer(lPGesture)
         contentView.backgroundColor = .clear
         plateView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addConstraints([

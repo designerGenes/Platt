@@ -12,19 +12,6 @@ import UIKit
 
 extension UIColor {
     
-    convenience init(hexString: String, alpha: CGFloat = 1.0) {
-        let scanner = Scanner(string: hexString)
-        var hexInt: UInt32 = 0
-        scanner.charactersToBeSkipped = CharacterSet(charactersIn: "#")
-        scanner.scanHexInt32(&hexInt)
-        self.init(
-            red: CGFloat((hexInt & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((hexInt & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(hexInt & 0x0000FF) / 255.0,
-            alpha: CGFloat(alpha)
-        )
-    }
-    
     class func darkPurple() -> UIColor { return UIColor(hexString: "#2F195F") }
     class func brightRed() -> UIColor { return UIColor(hexString: "#DB5461") }
     

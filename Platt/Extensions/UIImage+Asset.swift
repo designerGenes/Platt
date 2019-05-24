@@ -13,6 +13,7 @@ enum NamedAsset: String {
     case letterC, fullBar, halfBar
     case lb, kg
     case menu
+    case plattLogo
 }
 
 extension UIImage {

@@ -1,0 +1,39 @@
+{
+ "pages": {
+   "about": {
+     "title": "about",
+     "body": "Platt is a visual calculator for every time you need to sum up barbell plates quickly, without using mental energy.  Its goal is to keep your focus on pumping reps, not counting plates.  Platt is named after Oliver Platt, who played $ROLE in $MOVIE.",
+     "roles": [
+       {
+         "role": "the dad", 
+         "movie": "Beethoven"
+        },
+       {
+         "role": "Oliver Babish",
+         "movie": "the West Wing"
+       },
+       {
+         "role": "Freddy Prune",
+         "movie": "Nip/Tuck"
+       },
+       {
+         "role": "the greedy grocery-story king",
+         "movie": "Fargo season 1"
+       },
+       {
+         "role": "Daniel Charles",
+         "movie": "Chicago Fire"
+       },
+       {
+         "role": "Porthos",
+         "movie": "the Three Musketeers"
+       }
+      ]
+   },
+   "contact": {
+     "title": "contact",
+     "body": "You can reach DesignerGenes at $EMAIL",
+     "email": "support@designergenes.dev"
+   }
+ }   
+}

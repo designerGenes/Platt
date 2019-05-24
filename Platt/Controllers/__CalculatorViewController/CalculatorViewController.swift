@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalculatorViewController: BaseViewController, TableViewSizingDelegate {
+class CalculatorViewController: ModernViewController, TableViewSizingDelegate {
     private let tableView = StaticListTableView<CalculatorTableDataSource>()
     
     // MARK: - StaticListTableViewDelegate methods
@@ -27,15 +27,16 @@ class CalculatorViewController: BaseViewController, TableViewSizingDelegate {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func addConstraints() {
+        view.coverSelfEntirely(with: tableView, obeyMargins: false)
+    }
+    
+    override func onLoadSetup() {
         view.layoutMargins = .zero
         tableView.backgroundColor = .spotifyGray()
-        view.coverSelfEntirely(with: tableView, obeyMargins: false)
         tableView.staticListDataSource?.sizingDelegate = self
-        tableView.reloadData()
-        
         
     }
+    
 }
 

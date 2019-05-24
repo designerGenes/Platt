@@ -23,7 +23,6 @@
 		FE3E68A4226E4F23008C8CE5 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E689F226E4F23008C8CE5 /* Utils.swift */; };
 		FE3E68A5226E4F23008C8CE5 /* UIFont+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68A0226E4F23008C8CE5 /* UIFont+Design.swift */; };
 		FE3E68A7226E5267008C8CE5 /* CalculatorTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68A6226E5267008C8CE5 /* CalculatorTableDataSource.swift */; };
-		FE3E68AB226E542A008C8CE5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */; };
 		FE3E68AE226E5762008C8CE5 /* PlateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AD226E5762008C8CE5 /* PlateView.swift */; };
 		FE3E68B0226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68AF226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift */; };
 		FE3E68B2226F7560008C8CE5 /* PlateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */; };
@@ -39,6 +38,12 @@
 		FEBFCB6F2295971500573FAE /* DrawerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB6E2295971500573FAE /* DrawerButtonView.swift */; };
 		FEBFCB722295CD3100573FAE /* CollectionViewWithSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB712295CD3100573FAE /* CollectionViewWithSize.swift */; };
 		FEBFCB782296094F00573FAE /* SF-Pro-Text-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEBFCB772296094E00573FAE /* SF-Pro-Text-Regular.ttf */; };
+		FEBFCB7B22974C9300573FAE /* DualStateInsetTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB7A22974C9300573FAE /* DualStateInsetTextView.swift */; };
+		FEBFCB7D22974D5900573FAE /* UIColor+Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB7C22974D5900573FAE /* UIColor+Utility.swift */; };
+		FEBFCB7F2297AA3100573FAE /* ContentStrings.json in Resources */ = {isa = PBXBuildFile; fileRef = FEBFCB7E2297AA3100573FAE /* ContentStrings.json */; };
+		FEBFCB812297B2DF00573FAE /* UIString+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB802297B2DF00573FAE /* UIString+Content.swift */; };
+		FEBFCB832297B39700573FAE /* GenericPageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB822297B39700573FAE /* GenericPageData.swift */; };
+		FEBFCB852297B51B00573FAE /* ContentStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBFCB842297B51B00573FAE /* ContentStrings.swift */; };
 		FEC3A057226F8D7600111B59 /* UIImage+Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */; };
 		FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A058226F8E3A00111B59 /* InsetLabel.swift */; };
 		FEC3A05B226F937000111B59 /* RoundedCornersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC3A05A226F937000111B59 /* RoundedCornersView.swift */; };
@@ -75,7 +80,6 @@
 		FE3E689F226E4F23008C8CE5 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		FE3E68A0226E4F23008C8CE5 /* UIFont+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Design.swift"; sourceTree = "<group>"; };
 		FE3E68A6226E5267008C8CE5 /* CalculatorTableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTableDataSource.swift; sourceTree = "<group>"; };
-		FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		FE3E68AD226E5762008C8CE5 /* PlateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateView.swift; sourceTree = "<group>"; };
 		FE3E68AF226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDrawerTableViewCell.swift; sourceTree = "<group>"; };
 		FE3E68B1226F7560008C8CE5 /* PlateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlateCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -93,6 +97,12 @@
 		FEBFCB6E2295971500573FAE /* DrawerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerButtonView.swift; sourceTree = "<group>"; };
 		FEBFCB712295CD3100573FAE /* CollectionViewWithSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewWithSize.swift; sourceTree = "<group>"; };
 		FEBFCB772296094E00573FAE /* SF-Pro-Text-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.ttf"; sourceTree = "<group>"; };
+		FEBFCB7A22974C9300573FAE /* DualStateInsetTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DualStateInsetTextView.swift; sourceTree = "<group>"; };
+		FEBFCB7C22974D5900573FAE /* UIColor+Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utility.swift"; sourceTree = "<group>"; };
+		FEBFCB7E2297AA3100573FAE /* ContentStrings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ContentStrings.json; sourceTree = "<group>"; };
+		FEBFCB802297B2DF00573FAE /* UIString+Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIString+Content.swift"; sourceTree = "<group>"; };
+		FEBFCB822297B39700573FAE /* GenericPageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPageData.swift; sourceTree = "<group>"; };
+		FEBFCB842297B51B00573FAE /* ContentStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStrings.swift; sourceTree = "<group>"; };
 		FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Asset.swift"; sourceTree = "<group>"; };
 		FEC3A058226F8E3A00111B59 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		FEC3A05A226F937000111B59 /* RoundedCornersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornersView.swift; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 		FE3E6889226E4CA9008C8CE5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FEBFCB7E2297AA3100573FAE /* ContentStrings.json */,
 				FEC93272226FEEAB009BDD12 /* Fonts */,
 				FE3E6880226E4C99008C8CE5 /* LaunchScreen.storyboard */,
 				FE3E687E226E4C99008C8CE5 /* Assets.xcassets */,
@@ -166,7 +177,6 @@
 				FE3E6892226E4D80008C8CE5 /* __CalculatorViewController */,
 				FEBFCB732295EF1700573FAE /* __SpineViewController */,
 				FEBFCB742295EF7100573FAE /* __SideCabinetController */,
-				FE3E68AC226E5431008C8CE5 /* BaseViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -178,6 +188,8 @@
 				FE3E68B3226F7C61008C8CE5 /* Enums.swift */,
 				FE3E68B5226F7E7A008C8CE5 /* PlateCalculator.swift */,
 				FEC93270226FD4D7009BDD12 /* PlatesLibrary.swift */,
+				FEBFCB822297B39700573FAE /* GenericPageData.swift */,
+				FEBFCB842297B51B00573FAE /* ContentStrings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -227,16 +239,10 @@
 				FE3E689E226E4F23008C8CE5 /* UIViewController+Convenience.swift */,
 				FE3E689F226E4F23008C8CE5 /* Utils.swift */,
 				FEC3A056226F8D7600111B59 /* UIImage+Asset.swift */,
+				FEBFCB7C22974D5900573FAE /* UIColor+Utility.swift */,
+				FEBFCB802297B2DF00573FAE /* UIString+Content.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		FE3E68AC226E5431008C8CE5 /* BaseViewController */ = {
-			isa = PBXGroup;
-			children = (
-				FE3E68AA226E542A008C8CE5 /* BaseViewController.swift */,
-			);
-			path = BaseViewController;
 			sourceTree = "<group>";
 		};
 		FE49F7A4228353B80007D7A8 /* BarVisualizerTableViewCell */ = {
@@ -312,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				FE3E6897226E4E8D008C8CE5 /* PlateSumTableViewCell.swift */,
+				FEBFCB7A22974C9300573FAE /* DualStateInsetTextView.swift */,
 			);
 			path = PlateSumTableViewCell;
 			sourceTree = "<group>";
@@ -410,6 +417,7 @@
 				FE3E6882226E4C99008C8CE5 /* LaunchScreen.storyboard in Resources */,
 				FE3E687F226E4C99008C8CE5 /* Assets.xcassets in Resources */,
 				FEBFCB782296094F00573FAE /* SF-Pro-Text-Regular.ttf in Resources */,
+				FEBFCB7F2297AA3100573FAE /* ContentStrings.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,8 +443,11 @@
 				FE76A4852294730B009E4B17 /* CollectionTableViewCell.swift in Sources */,
 				FE3E6898226E4E8D008C8CE5 /* PlateSumTableViewCell.swift in Sources */,
 				FE76A488229480E7009E4B17 /* StaticListTableView.swift in Sources */,
+				FEBFCB812297B2DF00573FAE /* UIString+Content.swift in Sources */,
+				FEBFCB7B22974C9300573FAE /* DualStateInsetTextView.swift in Sources */,
 				FE3E6894226E4E58008C8CE5 /* PlateCollectionTableViewCell.swift in Sources */,
 				FE3E68A2226E4F23008C8CE5 /* UIColor+Design.swift in Sources */,
+				FEBFCB852297B51B00573FAE /* ContentStrings.swift in Sources */,
 				FE49F7C722838E030007D7A8 /* SkinnyPlateView.swift in Sources */,
 				FE3E687A226E4C94008C8CE5 /* CalculatorViewController.swift in Sources */,
 				FE3E68B6226F7E7A008C8CE5 /* PlateCalculator.swift in Sources */,
@@ -448,15 +459,16 @@
 				FEC3A059226F8E3A00111B59 /* InsetLabel.swift in Sources */,
 				FE49F7D922848E4A0007D7A8 /* ModernView.swift in Sources */,
 				FEC3A057226F8D7600111B59 /* UIImage+Asset.swift in Sources */,
+				FEBFCB832297B39700573FAE /* GenericPageData.swift in Sources */,
 				FEBFCB722295CD3100573FAE /* CollectionViewWithSize.swift in Sources */,
 				FE76A48B2294960A009E4B17 /* StaticListTableViewDataSource.swift in Sources */,
 				FE3E6878226E4C94008C8CE5 /* AppDelegate.swift in Sources */,
 				FE3E68A3226E4F23008C8CE5 /* UIViewController+Convenience.swift in Sources */,
+				FEBFCB7D22974D5900573FAE /* UIColor+Utility.swift in Sources */,
 				FE3E68A7226E5267008C8CE5 /* CalculatorTableDataSource.swift in Sources */,
 				FE3E68B2226F7560008C8CE5 /* PlateCollectionViewCell.swift in Sources */,
 				FEC93271226FD4D7009BDD12 /* PlatesLibrary.swift in Sources */,
 				FE3E68B0226E6728008C8CE5 /* ButtonDrawerTableViewCell.swift in Sources */,
-				FE3E68AB226E542A008C8CE5 /* BaseViewController.swift in Sources */,
 				FE3E688C226E4D28008C8CE5 /* SpineViewController.swift in Sources */,
 				FE3E68A4226E4F23008C8CE5 /* Utils.swift in Sources */,
 			);

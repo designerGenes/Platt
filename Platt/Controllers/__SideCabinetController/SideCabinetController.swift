@@ -19,6 +19,7 @@ enum SideCabinetOption: String {
 extension Notification.Name {
     static let openingSideCabinetController = Notification.Name("openingSideCabinetController")
     static let openedSideCabinetController = Notification.Name("openedSideCabinetController")
+    static let closingSideCabinetController = Notification.Name("closingSideCabinetController")
     static let closedSideCabinetController = Notification.Name("closedSideCabinetController")
 }
 
